@@ -22,20 +22,25 @@ ul#reple li{
 	<section>
 		<hr color="red">
 		<header>
-			<div><h3><%-- ${글제목 } --%>a</h3></div>
-			<div>
-				<span><%-- ${날짜 } --%>a</span>
-				<span><%-- ${조회수 } --%>a</span>
+			<div><h3><%-- ${글제목 } --%>제목</h3></div>
+			<div class="row">
+				<div class="col text-left">
+					<span><%-- ${본문작성자이름 } --%>본문작성자이름</span>
+				</div>
+				<div class="col text-right">
+					<span><%-- ${날짜 } --%>작성일</span>
+					<span><%-- ${조회수 } --%>조회수</span>
+				</div>
 			</div>
 		</header>
 		<hr color="red">
 		<div>
 			<article>
 				<%-- ${글} --%>
-				aawdWdawdawdawdawdawdawdawdawd
-				awdawdawdawdawdawdawdawda
-				awdawdawdawdawdaw
-				dawdawdawdawd
+				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+				내용내용내용내용내용내용내용내용내용내용내용내용
 			</article>
 		</div>
 	</section>
@@ -52,11 +57,11 @@ ul#reple li{
 				<c:forEach var="i" items=""> --%>
 					<li>
 						<div id="repleInfo">
-							<span><%-- ${작성자이름 } --%>a</span>
-							<span><%-- ${댓글작성날짜 } --%>a</span>
+							<span><%-- ${댓글작성자이름 } --%>작성자 이름</span>
+							<span><%-- ${댓글작성일 } --%>작성일</span>
 						</div>
 						<div>
-							<span><%-- ${댓글 } --%>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+							<span><%-- ${댓글 } --%>댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글</span>
 						</div>
 						<hr color="red">
 					</li>
@@ -75,6 +80,6 @@ ul#reple li{
 			  <div class="input-group-append">
 			    <button class="btn btn-success" type="submit">등록</button> 
 			  </div>
-			</div>
+		</div>
 	</div>
 </div>

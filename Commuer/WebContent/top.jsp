@@ -24,13 +24,13 @@
 	<meta charset="UTF-8">
 <style>
 #boardListNav>li>a{
-		font-size: 1.7em;
+		font-size: 1.3em;
 		color : black;
 		font-weight: bold;
 	}
 #boardListNav>li{
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 #cont{
 			background-color:rgb(133,114,238);
