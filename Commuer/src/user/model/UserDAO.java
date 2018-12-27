@@ -14,6 +14,7 @@ public class UserDAO {
 	private final String NS="user.model.UserMapper";
 	private SqlSession ses;
 	private SqlSessionFactory fac;
+	
 	public UserDAO() {
 		String resource="config/config.xml";
 		InputStream is=null;
@@ -23,7 +24,6 @@ public class UserDAO {
 			fac=new SqlSessionFactoryBuilder().build(is);
 			//System.out.println("fac= "+fac);
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
 	}

@@ -83,9 +83,9 @@ a.nav-link{
 			  <button type="submit" class="btn btn-default btn-sm">로그인</button>
 		  </form>
 		  
-		  <div class="row">
-		  	<a class="nav-link" href="<%=myctx%>/user/join.jsp">회원가입</a>
-		  	<a class="nav-link" href="<%=myctx%>/user/findUser.jsp">아이디/비밀번호 찾기</a>
+		  <div class="row"> 
+		  	<a class="nav-link" href="<%=myctx%>/join.do">회원가입</a>
+		  	<a class="nav-link" href="<%=myctx%>/findUser.jsp">아이디/비밀번호 찾기</a>
 		  </div>
 	  <!--------------------------------------------------------------------------------------- -->
 	  </div>

@@ -29,7 +29,7 @@ $(function(){
 	
 </script>
 <div class="container" align="center">
-  <form>
+  <form action="../joinEnd.do" method="POST">
   <p></p>
 	  <div class="row" >
 	  	<div class="col-md-10">

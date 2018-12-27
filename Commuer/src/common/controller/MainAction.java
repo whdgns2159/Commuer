@@ -8,9 +8,7 @@ public class MainAction extends AbstractAction {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		
-		
-		this.setViewPage("main.do");
+		this.setViewPage("main.jsp");
 		this.setRedirect(false);
 	}
 

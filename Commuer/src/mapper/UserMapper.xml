@@ -5,7 +5,6 @@
  <mapper 
  	namespace="user.model.UserMapper">
  	<insert id="createUser" parameterType="user">
- 		insert into user_Info values(user_seq.nextval, #{id},#{pwd},#{email},#{tel}, sysdate);
+ 		insert into user_Info values(user_seq.nextval, #{id},#{pwd},#{nickname},#{email},#{tel}, sysdate)
  	</insert>
- 
  </mapper>
