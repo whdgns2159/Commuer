@@ -13,63 +13,81 @@ $(function(){
 		
 	});
 	$('.btn-outline-primary').css('color','darkviolet');
+	/* $('tr').firstchild().css('text-align','right'); */
 });
 
+
+	var idCheck=function(){
+		var url='idCheck.jsp';
+		win = window.open(url, 'idCheck','width=400, height=400, left=100, top=100]');
+	}
+	
+	var nicknameCheck=function(){
+		var url='nicknameCheck.jsp';
+		win = window.open(url, 'idCheck','width=400, height=400, left=100, top=100]');
+	}
+	
 </script>
 <div class="container" align="center">
-  <form action="" >
+  <form>
   <p></p>
 	  <div class="row" >
-	  	<div class="col-md-12">
+	  	<div class="col-md-10">
 		  	<table class="table table-borderless" id="userInfo" >
 			    <thead>
 			      <tr>
-			        <th><h2>정보입력</h2></th>
+			        <th width="20%"><h2>정보입력</h2></th>
 			        <th></th>
-			        
+			        <th></th>
 			      </tr>
 			    </thead>
 			    <tbody>
 			      <tr>
-			      	<td>아이디</td>
-			        <td>
-			          <div class="row">
-				       		<div class="col"><input type="text" class="form-control" id="userId"></div>
-				       		<div class="col"><button class="btn btn-outline-primary" type="button" onclick="idCheck()">중복확인</button></div>
-				      </div>
+			      	<td width="10%">아이디</td>
+			        <td width="70%">
+			       		<input type="text" class="form-control" id="userId" name="userId">
 			       	</td>
+			       	<td width="20%"><button class="btn btn-outline-primary" type="button" onclick="idCheck()">중복확인</button></td>
 			      </tr>
 			      <tr>
-			        <td>닉네임</td>
+			        <td width="10%">닉네임</td>
 			        <td>
-				        <input type="text" id="userId">
-				        <button class="btn btn-outline-primary" type="button" onclick="nicknameCheck()">중복확인</button>
+				       <input type="text" class="form-control" id="userNick" name="userNick">
+			        </td>
+			        <td width="20%"> 
+			       		<button class="btn btn-outline-primary" type="button" onclick="nicknameCheck()">중복확인</button>
 			        </td>
 			      </tr>
 			      <tr>
-			        <td>비밀번호</td>
+			        <td width="10%">비밀번호</td>
 			        <td>
-			        	<input type="password" id="userPwd">
+			        	<input type="password" class="form-control" id="userPwd" name="userPwd">
+			        </td>
+			        <td width="20%"></td>
+			      </tr>
+			      <tr>
+			        <td width="10%">비밀번호 확인</td>
+			        <td>
+			        	<input type="password" class="form-control" id="pwdCheck" name="pwdCheck">
+			        </td>
+			        <td width="20%"></td>
+			      </tr>
+			      <tr>
+			        <td width="10%">이메일</td>
+			        <td>
+				        <input type="email" class="form-control" id="userEmail" name="userEmail">
+			        </td>
+			        <td width="20%">
+			        	<button class="btn btn-outline-primary" type="button" onclick="emailCheck()">중복확인</button>
 			        </td>
 			      </tr>
 			      <tr>
-			        <td>비밀번호 확인</td>
+			        <td width="10%">연락처</td>
 			        <td>
-			        	<input type="password" id="pwdCheck">
+				        <input type="tel" class="form-control" id="userTel" name="userTel">
 			        </td>
-			      </tr>
-			      <tr>
-			        <td>이메일</td>
-			        <td>
-				        <input type="email" id="userId">
-				        <button class="btn btn-outline-primary" type="button" onclick="emailCheck()">중복확인</button>
-			        </td>
-			      </tr>
-			      <tr>
-			        <td>연락처</td>
-			        <td>
-				        <input type="tel" id="userId">
-				        <button class="btn btn-outline-primary" type="button" onclick="phCheck()">중복확인</button>
+			        <td width="20%"> 
+			        	<button class="btn btn-outline-primary" type="button" onclick="phCheck()">중복확인</button>
 			        </td>
 			      </tr>
 			    </tbody>
@@ -78,7 +96,7 @@ $(function(){
 	  </div>
 	  <div class="row">
 	  	<div class="col-md-12">
-	  		<button class="btn btn-primary">제출</button>
+	  		<button class="btn btn-primary" type="submit">제출</button>
 	  	</div>
 	  </div>
   </form>
