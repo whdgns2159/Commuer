@@ -12,7 +12,7 @@ public class JoinAction extends AbstractAction {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		this.setRedirect(true);
+		this.setRedirect(false);
 		this.setViewPage("user/join.jsp");
 	}
 

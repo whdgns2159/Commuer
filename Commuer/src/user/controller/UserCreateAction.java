@@ -32,7 +32,7 @@ public class UserCreateAction extends AbstractAction {
 		req.setAttribute("loc", loc);
 		
 		this.setViewPage("user/message.jsp");
-		this.setRedirect(true);
+		this.setRedirect(false);
 	}
 
 }

@@ -56,7 +56,7 @@ a.nav-link{
 	<nav class="navbar">
 	  <div class="container">
 		  <div class="navbar-header">
-			  <a class="navbar-brand" href="<%=myctx %>/main.jsp" id="title">커뮤어</a>
+			  <a class="navbar-brand" href="<%=myctx %>/main.do" id="title">커뮤어</a>
 		  </div>
 		  <!-- form----------------------------------------------------------------- -->
 	 	  <form class="navbar-form  navbar-left" action="/">
@@ -85,7 +85,7 @@ a.nav-link{
 		  
 		  <div class="row"> 
 		  	<a class="nav-link" href="<%=myctx%>/join.do">회원가입</a>
-		  	<a class="nav-link" href="<%=myctx%>/findUser.jsp">아이디/비밀번호 찾기</a>
+		  	<a class="nav-link" href="<%=myctx%>/findUser.do">아이디/비밀번호 찾기</a>
 		  </div>
 	  <!--------------------------------------------------------------------------------------- -->
 	  </div>
