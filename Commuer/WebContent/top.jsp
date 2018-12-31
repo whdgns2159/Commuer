@@ -21,35 +21,12 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<link href="<%=myctx%>/css/style.css" rel="stylesheet" type="text/css">
-	<meta charset="UTF-8">
-<style>
-#boardListNav>li>a{
-		font-size: 1.3em;
-		color : black;
-		font-weight: bold;
-	}
-#boardListNav>li{
-	padding-left: 10px;
-	padding-right: 10px;
-}
-#cont{
-			background-color:rgb(133,114,238);
 	
-}
-a.navbar-brand{
-
-	color: white;
-}
-a.nav-link{
-	color: white;
-}
-
-#title{
-	font-size:30pt;
-}
+	<link href="<%=myctx%>/css/main2.css" rel="stylesheet" type="text/css">
+	<meta charset="UTF-8">
 
 
-</style>
+<script type="text/javascript" src="<%=myctx%>/js/userLogin.js"></script>
 </head>
 <body>
 <div class="container-fluid" id="cont">
@@ -68,26 +45,38 @@ a.nav-link{
 			  <button type="submit" class="btn btn-default btn-sm">검색</button>
 		  </form>
 		
-		  <!-- 로그인전 userinfo형태------------------------------------------------------------------- -->
-		  <form class="navbar-form navbar-right" action="/">
+		  <!-- 로그인전 ------------------------------------------------------------------------ -->
+		  <c:if test="${loginUser eq null}">
+		  <form class="navbar-form navbar-right" name="loginF" action="login.do">
 			  <div class="form-group">
 				  <div class="input-group-sm">
-				  	<input type="text" class="form-control form-control-sm" name="id">
+				  	<input type="text" class="form-control form-control-sm" name="id" placeholder="id">
 				  </div>
 			  </div>
 			  <div class="form-group">
 				  <div class="input-group-sm">
-				  	<input type="password" class="form-control form-control-sm" name="pwd">
+				  	<input type="password" class="form-control form-control-sm" name="pwd" placeholder="password">
 				  </div>
 			  </div>
-			  <button type="submit" class="btn btn-default btn-sm">로그인</button>
+			  <button type="button" class="btn btn-default btn-sm" onclick="loginCheck()">로그인</button>
 		  </form>
 		  
 		  <div class="row"> 
 		  	<a class="nav-link" href="<%=myctx%>/join.do">회원가입</a>
 		  	<a class="nav-link" href="<%=myctx%>/findUser.do">아이디/비밀번호 찾기</a>
 		  </div>
-	  <!--------------------------------------------------------------------------------------- -->
+		  </c:if>
+	  <!---------------------------------------------------------------------------------------- -->
+	  <!-- 로그인 후 userinfo상태-------------------------------------------------------------- -->
+	  	  <c:if test="${loginUser ne null}">
+	  	  	<div id="afterLogin">
+	  	  		<a>${loginUser.id }</a>
+	  	  		<a href="#">로그아웃</a>
+	  	  		<a>내가쓴글</a>
+	  	  		<a>회원수정</a>
+	  	  	</div>
+	  	  </c:if>
+	  <!-- ------------------------------------------------------------------------------------- -->
 	  </div>
 	</nav>
 </div>

@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+/*추가 css*/
+#boardListNav>li>a{
+			font-size: 1.3em;
+			color : black;
+			font-weight: bold;
+		}
+	#boardListNav>li{
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	#cont{
+				background-color:rgb(133,114,238);
+		
+	}
+	a.navbar-brand{
+	
+		color: white;
+	}
+	a.nav-link{
+		color: white;
+	}
+	
+	#title{
+		font-size:30pt;
+	}
+	#afterLogin{
+		float:right;
+		border:1px solid white; 
+		border-radius:4px;
+		width:350px; 
+		height:50px;
+		text-align: center;
+		vertical-align: middle;
+	}

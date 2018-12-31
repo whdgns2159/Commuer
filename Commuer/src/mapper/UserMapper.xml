@@ -4,7 +4,13 @@
 
  <mapper 
  	namespace="user.model.UserMapper">
+ 	<!-- 새로운 유저를 생성하는 sql문 -->
  	<insert id="createUser" parameterType="user">
  		insert into user_Info values(user_seq.nextval, #{id},#{pwd},#{nickname},#{email},#{tel}, sysdate)
  	</insert>
+ 	
+ 	<!-- 로그인을 위한 아이디 비번 불러오기 -->
+ 	<select id="userLogin" parameterType="string" resultType="user">
+ 		select * from user_info where id=#{id}
+ 	</select>
  </mapper>

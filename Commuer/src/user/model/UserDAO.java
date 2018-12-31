@@ -2,7 +2,7 @@ package user.model;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -32,11 +32,8 @@ public class UserDAO {
 	/**아이디 중복체크 여부를 반환하는 메소드*/
 	/*public boolean isDuplicatedId(String userid){
 		try {
-			
 			ses=fac.openSession();
 			ses.selectOne(userid);
-		
-			
 		} finally {
 			if(ses!=null) ses.close();
 		}
@@ -51,4 +48,16 @@ public class UserDAO {
 			if(ses!=null) ses.close();
 		}
 	}
+	
+	public UserVO userLogin(String id){
+		try {
+			ses=fac.openSession();
+			UserVO userInfo=ses.selectOne(NS+".userLogin", id);
+			
+			return userInfo;
+		} finally {
+			if(ses!=null) ses.close();
+		}
+	}
+	
 }

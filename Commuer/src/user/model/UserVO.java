@@ -21,6 +21,11 @@ public class UserVO {
 		this.tel = tel;
 		this.regDate = regDate;
 	}
+	public UserVO(String id, String pwd) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+	}
 	public String getTel() {
 		return tel;
 	}
