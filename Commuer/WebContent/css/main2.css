@@ -26,11 +26,22 @@
 		font-size:30pt;
 	}
 	#afterLogin{
-		float:right;
 		border:1px solid white; 
 		border-radius:4px;
-		width:350px; 
+		width:450px; 
 		height:50px;
-		text-align: center;
-		vertical-align: middle;
+		
+		
+	}
+	#afterLogin ul{
+		margin-top:15px;
+	}
+	#afterLogin li{
+		list-style-type: none;
+		float:left;
+		width:100px;
+	}
+
+	#afterLogin a{
+		font-size:10pt;
 	}
