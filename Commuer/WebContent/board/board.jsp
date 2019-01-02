@@ -22,31 +22,31 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:if test="${게시판DB eq null or empty 게시판DB}"><!-- 게시판이 비어있을때 표시하는 내용 -->
+				<c:if test="${BT eq null or empty BT}"><!-- 게시판이 비어있을때 표시하는 내용 -->
 					<tr>
 						<td colspan="4">
 							<b>데이터가 없습니다.</b>
 						</td>
 					</tr>
 				</c:if>
-				<c:if test="">
-					<c:forEach var="" items="">
+				<c:if test="${BT ne null}">
+					<c:forEach var="i" items="${BT}">
 						<tr>
-							<td width="5%">${인덱스}</td>
-							<td width="65%">${제목 }</td>
-							<td width="10%">${날짜 }</td>
-							<td width="10%">${조회수 }</td>
-							<td width="10%">${공감수 }</td>
+							<td width="5%">${i.num}</td>
+							<td width="65%">${i.subject}</td>
+							<td width="10%">${i.date}</td>
+							<td width="10%">${i.hits}</td>
+							<td width="10%">${i.likes}</td>
 						</tr>
 					</c:forEach>
 				</c:if>
-				<tr>
+				<%-- <tr>
 					<td colspan="2" class="text-center">
 						<!-- begin: 시작값
 								end: 끝값
 								step: 증가치 (디폴트:1)
 						 -->
-						 <!-- 페이지 네비게이션 시작 -->
+						 <!-- 페이지네이션 시작 -->
 						 <ul class="pagination">
 							<c:forEach var="i" begin="1" end="${pageCount}" step="1">
 								
@@ -69,7 +69,7 @@
 							<span class="badge badge-light">${totalCount}</span>
 						</button>
 					</td>
-				</tr>
+				</tr> --%>
 			</tbody>
 		</table>
 	</div>

@@ -7,9 +7,9 @@
 			<%-- <c:if test="">
 				<c:forEach var="board" items="#" varStatus="listStatus"> --%>
 					<ul class="nav" id="boardListNav" style="padding:auto">
-						<li class="nav-item"><a class="nav-link" href="${board/board/jsp }">인기게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">유머</a></li>
+						<li class="nav-item"><a class="nav-link" href="board.do?tn=1">인기게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="board.do?tn=2">자유게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="board.do?tn=3">유머</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">음악</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">연예</a></li>
 					</ul>

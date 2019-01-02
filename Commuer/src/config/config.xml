@@ -5,6 +5,7 @@
   <properties resource="config/db.properties" />
   <typeAliases>
   	<typeAlias type="user.model.UserVO" alias="user"/>
+  	<typeAlias type="board.model.BoardVO" alias="board"/>
   </typeAliases>
   <environments default="development">
    <environment id="development">
@@ -20,6 +21,8 @@
   <mappers>
   <!-- Mapper파일 경로 설정========================= -->
    <mapper resource="mapper/UserMapper.xml" />
+   <mapper resource="mapper/FreeBoardMapper.xml" />
+   <mapper resource="mapper/HumorBoardMapper.xml" />
    <!-- ====================================== -->
   </mappers>
  </configuration>

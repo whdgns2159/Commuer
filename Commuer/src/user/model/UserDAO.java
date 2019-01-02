@@ -39,6 +39,7 @@ public class UserDAO {
 		}
 	}
 	*/
+	/**회원가입을 통한 유저생성*/
 	public int createUser(UserVO uvo) {
 		try {
 			ses=fac.openSession(true);
@@ -49,6 +50,7 @@ public class UserDAO {
 		}
 	}
 	
+	/**로그인시 유저정보 확인*/
 	public UserVO userLogin(String id){
 		try {
 			ses=fac.openSession();
