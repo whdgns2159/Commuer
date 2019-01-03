@@ -22,7 +22,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<link href="<%=myctx%>/css/style.css" rel="stylesheet" type="text/css">
 	
-	<link href="<%=myctx%>/css/main2.css" rel="stylesheet" type="text/css">
+	<link href="<%=myctx%>/css/top.css" rel="stylesheet" type="text/css">
 	<meta charset="UTF-8">
 
 
@@ -47,7 +47,7 @@
 		
 		  <!-- 로그인전 ------------------------------------------------------------------------ -->
 		  <c:if test="${loginUser eq null}">
-		  <form class="navbar-form navbar-right" name="loginF" action="login.do">
+		  <form class="navbar-form navbar-right" name="loginF" action="<%=myctx %>/login.do">
 			  <div class="form-group">
 				  <div class="input-group-sm">
 				  	<input type="text" class="form-control form-control-sm" name="id" placeholder="id">
@@ -72,7 +72,7 @@
 	  	  	<div id="afterLogin">
 	  	  		<ul>
 		  	  		<li><a>${loginUser.id }</a></li>
-		  	  		<li><a href="#">로그아웃</a></li>
+		  	  		<li><a href="<%=myctx %>/logout.do">로그아웃</a></li>
 		  	  		<li><a>내가쓴글</a></li>
 		  	  		<li><a>회원수정</a></li>
 	  	  		</ul>

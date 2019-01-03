@@ -19,8 +19,13 @@
  	<select id="boardContent" resultMap="boardMap">
  		select free_b_num, subject, content, id, hits, likes, wdate  
  		from free_board order by 1 desc 
- 		
- 	
  	</select>
+ 	<insert id="articleWrite" parameterType="board">
+ 		insert into free_board values(
+ 			
+ 		)
+ 		
+ 		
+ 	</insert>
  	
  </mapper>

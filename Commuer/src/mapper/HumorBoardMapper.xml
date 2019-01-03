@@ -6,7 +6,7 @@
  
   	<!-- 칼럼과 VO객체의 명명이 다를경우 맵핑해준다. -->
  	<resultMap type="board" id="boardMap">
- 		<id property="num" column="free_b_num"/>
+ 		<id property="num" column="humor_b_num"/>
  		<result property="subject" column="subject"/>
  		<result property="content" column="content"/>
  		<result property="id" column="id"/>
@@ -17,10 +17,8 @@
  	
  	
  	<select id="boardContent" resultMap="boardMap">
- 		select free_b_num, subject, content, id, hits, likes, wdate  
+ 		select humor_b_num, subject, content, id, hits, likes, wdate  
  		from humor_board order by 1 desc 
- 		
- 	
  	</select>
  	
  	

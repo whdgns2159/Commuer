@@ -7,7 +7,7 @@
 <div class="container">
 	<div >
 		<h1>
-			게시판이름
+			${tn}
 		</h1>
 	</div>
 	<div class="table">
@@ -42,20 +42,14 @@
 				</c:if>
 				<%-- <tr>
 					<td colspan="2" class="text-center">
-						<!-- begin: 시작값
-								end: 끝값
-								step: 증가치 (디폴트:1)
-						 -->
-						 <!-- 페이지네이션 시작 -->
 						 <ul class="pagination">
 							<c:forEach var="i" begin="1" end="${pageCount}" step="1">
-								
-								<c:if test="${i eq cpage }"><!-- 현재페이지 일 경우 -->
-									<li class="page-item active" ><!-- active클래스를 넣어주면 현재페이지는 다른색으로 표시됨 -->
+								<c:if test="${i eq cpage }">
+									<li class="page-item active" >
 										<a class="page-link" href="#">a</a>
 									</li>
 								</c:if>
-								<c:if test="${i ne cpage }"><!-- 현재 보고있는 페이지가 아닐경우 -->
+								<c:if test="${i ne cpage }">
 									<li class="page-item" >
 										<a class="page-link" href="#">a</a>
 									</li>
@@ -72,5 +66,12 @@
 				</tr> --%>
 			</tbody>
 		</table>
+		<div class="art_write" style="text-align:right">
+			<button class="btn btn-primary" type="button" onclick=”location.src=’articleWrite.jsp'”>글쓰기</button>
+		</div>
 	</div>
 </div>
+
+<script>
+	
+</script>

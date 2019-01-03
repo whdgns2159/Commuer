@@ -13,12 +13,15 @@ public class BoardAction extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		String tn=req.getParameter("tn");
+		String tnStr=req.getParameter("tn");
+		int tn=Integer.parseInt(tnStr);
 		
 		BoardDAO dao=new BoardDAO();
-		List<BoardVO> arr=dao.getSelectedBoard(tn);
+		List<BoardVO> arr=dao.getSelectedBoard(tnStr);
+		
 		
 		req.setAttribute("BT", arr);
+		req.setAttribute("tn", tn);
 		
 		String viewPage="board/board.jsp";
 		
