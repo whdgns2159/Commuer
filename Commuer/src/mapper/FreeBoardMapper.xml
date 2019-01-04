@@ -22,7 +22,13 @@
  	</select>
  	<insert id="articleWrite" parameterType="board">
  		insert into free_board values(
- 			
+ 			free_board_seq.nextval,
+ 			#{subject},
+ 			#{content},
+ 			#{id},
+ 			0,
+ 			0,
+ 			sysdate
  		)
  		
  		

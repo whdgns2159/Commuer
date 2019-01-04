@@ -66,12 +66,15 @@
 				</tr> --%>
 			</tbody>
 		</table>
+		<c:if test="${loginUser ne null }">
 		<div class="art_write" style="text-align:right">
-			<button class="btn btn-primary" type="button" onclick=”location.src=’articleWrite.jsp'”>글쓰기</button>
+			<button class="btn btn-primary" type="button" onclick="">글쓰기</button>
 		</div>
+		</c:if>
 	</div>
 </div>
-
 <script>
-	
+	var artwrite=function(){
+		
+	}
 </script>

@@ -18,6 +18,6 @@
     
 <script type="text/javascript">
 	$('.art_content').on('focus',function(){
-		$('.placeholder_cont')
+		$('.placeholder_cont').val().clear();
 	});
 </script>

@@ -58,21 +58,17 @@ public class BoardDAO {
 	/**게시물 작성하기*/
 	public int insertBoard(String tn, BoardVO vo){
 		try {
-			int intTn=Integer.parseInt(tn);
-			if(intTn<1) {
-				tn="1";
+			switch(tn) {
+			/*case "1":
+				NS="board.model.Mapper1";
+				break;*/
+			case "2":
+				NS="board.model.FreeBoardMapper"; //자유게시판
+				break;
+			case "3":
+				NS="board.model.HumorBoardMapper"; //유머게시판
+				break;
 			}
-		switch(tn) {
-		/*case "1":
-			NS="board.model.Mapper1";
-			break;*/
-		case "2":
-			NS="board.model.FreeBoardMapper"; //자유게시판
-			break;
-		case "3":
-			NS="board.model.HumorBoardMapper"; //유머게시판
-			break;
-		}
 			ses=fac.openSession(true);
 			int n=ses.insert(NS+".articleWrite",vo);
 			

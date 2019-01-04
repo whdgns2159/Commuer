@@ -1,118 +1,126 @@
 @charset "UTF-8";
 
 /*추가 css*/
-#boardListNav>li>a{
-			font-size: 1.3em;
-			color : black;
-			font-weight: bold;
-		}
-	#boardListNav>li{
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-	#cont{
-				background-color:rgb(133,114,238);
-		
-	}
-	a.navbar-brand{
-	
-		color: white;
-	}
-	a.nav-link{
-		color: white;
-	}
-	
-	#title{
-		font-size:30pt;
-	}
-	#afterLogin{
-		border:1px solid white; 
-		border-radius:4px;
-		width:450px; 
-		height:50px;
-		
-		
-	}
-	#afterLogin ul{
-		margin-top:15px;
-	}
-	#afterLogin li{
-		list-style-type: none;
-		float:left;
-		width:100px;
-	}
-
-	#afterLogin a{
-		font-size:10pt;
-	}
-	
-/*글작성 폼 css*/
-.art_title{
-	background-color:white;
-	font-size:14pt;
-	height:50px;
-	border-top-style:solid;
-	border-top-width:1px;
-	border-top-left-radius:0px;
-	border-top-right-radius:0px;
-	border-bottom-style:solid;
-	border-bottom-width:1px;
-	border-bottom-left-radius:0px;
-	border-bottom-right-radius:0px;
-	border-left-style:none;
-	border-left-width:0px;
-	border-right-style:none;
-	border-right-width:0px;
-	padding-top:12px;
-	padding-bottom:12px;
-	padding-left:15px;
-	padding-right:15px;
-	
+/* top css */
+#boardListNav>li>a {
+	font-size: 1.3em;
+	color: black;
+	font-weight: bold;
 }
-.art_content{
-	
-	background-color:white;
-	font-size:14pt;
-	box-sizing:border-box;
-	outline-style:none;
-	outline-width:0px;
-	border-top-style:none;
-	border-top-width:0px;
-	border-bottom-color:rgb(228, 228, 228);
-	border-bottom-style:solid;
-	border-bottom-width:1px;
-	border-bottom-left-radius:0px;
-	border-bottom-right-radius:0px;
-	border-left-style:none;
-	border-left-width:0px;
-	border-right-style:none;
-	border-right-width:0px;
-	padding-top:0px;
-	padding-bottom:0px;
-	padding-left:15px;
-	padding-right:15px;
-	height:500px;
-	width:100%;
-	display:block;
-	text-align:left;
-	text-size-adjust:100%;
+
+#boardListNav>li {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#cont {
+	background-color: rgb(133, 114, 238);
+}
+
+a.navbar-brand {
+	color: white;
+}
+
+a.nav-link {
+	color: white;
+}
+
+#title {
+	font-size: 30pt;
+}
+
+#afterLogin {
+	border: 1px solid white;
+	border-radius: 4px;
+	width: 450px;
+	height: 50px;
+}
+
+#afterLogin ul {
+	margin-top: 15px;
+}
+
+#afterLogin li {
+	list-style-type: none;
+	float: left;
+	width: 100px;
+}
+
+#afterLogin ul li a:link {
+	font-size: 10pt;
+	text-decoration: none;
+}
+
+/*글작성 폼 css*/
+.art_title {
+	background-color: white;
+	font-size: 14pt;
+	height: 50px;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-left-style: none;
+	border-left-width: 0px;
+	border-right-style: none;
+	border-right-width: 0px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.art_content {
+	background-color: white;
+	font-size: 14pt;
+	box-sizing: border-box;
+	outline-style: none;
+	outline-width: 0px;
+	border-top-style: none;
+	border-top-width: 0px;
+	border-bottom-color: rgb(228, 228, 228);
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-left-style: none;
+	border-left-width: 0px;
+	border-right-style: none;
+	border-right-width: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 15px;
+	padding-right: 15px;
+	height: 500px;
+	width: 100%;
+	display: block;
+	text-align: left;
+	text-size-adjust: 100%;
 	overflow: auto;
 }
-.placeholder_cont{
-	position:relative;
+
+.placeholder_cont {
+	position: relative;
 	top: 20px;
-    left: 15px;
-    color:gray;
-    font-size:12pt;
-}
-.art_result{
-	margin-top:15px;
-	text-align:center;
-}
-.art_result .btn{
-	width:110px;
+	left: 15px;
+	color: gray;
 	font-size: 12pt;
 }
-.art_result .btn:first-child{
-	margin-right:5px;
+
+.art_result {
+	margin-top: 15px;
+	text-align: center;
+}
+
+.art_result .btn {
+	width: 110px;
+	font-size: 12pt;
+}
+
+.art_result .btn:first-child {
+	margin-right: 5px;
 }

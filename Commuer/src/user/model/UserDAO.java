@@ -30,15 +30,17 @@ public class UserDAO {
 	
 
 	/**아이디 중복체크 여부를 반환하는 메소드*/
-	/*public boolean isDuplicatedId(String userid){
+	public boolean isDuplicatedId(String id){
 		try {
 			ses=fac.openSession();
-			ses.selectOne(userid);
+			boolean b=ses.selectOne(NS+".idCheck", id);
+			
+			return b;
 		} finally {
 			if(ses!=null) ses.close();
 		}
 	}
-	*/
+	
 	/**회원가입을 통한 유저생성*/
 	public int createUser(UserVO uvo) {
 		try {
