@@ -1,46 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="board.controller.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/top.jsp"/>
 <jsp:include page="/boardList.jsp"/>
-<style>
-<!--
-ul#reple{
-	list-style: none;
-	margin: 0em;
-	padding: 0em;
-}
-div#repleInfo{
-	font-weight: bold;
-}
-ul#reple li{
-	list-style: none;
-}
--->
-</style>
+
 <div class="container">
 	<section>
 		<hr color="red">
 		<header>
-			<div><h3><%-- ${글제목 } --%>제목</h3></div>
+			<div><h3>${ga.subject }</h3></div>
 			<div class="row">
 				<div class="col text-left">
-					<span><%-- ${본문작성자이름 } --%>본문작성자이름</span>
+					<span>${ga.id}</span>
 				</div>
 				<div class="col text-right">
-					<span><%-- ${날짜 } --%>작성일</span>
-					<span><%-- ${조회수 } --%>조회수</span>
+					<span><fmt:formatDate value="${ga.wdate}" pattern="yyyy-MM-dd"/></span>
+					<span>${ga.hits }</span>
 				</div>
 			</div>
 		</header>
 		<hr color="red">
 		<div>
 			<article>
-				<%-- ${글} --%>
-				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-				내용내용내용내용내용내용내용내용내용내용내용내용
+				${ga.content}
 			</article>
 		</div>
 	</section>
@@ -78,7 +61,7 @@ ul#reple li{
 		<div class="input-group mb-3">
 			  <input type="text" class="form-control" placeholder="Search">
 			  <div class="input-group-append">
-			    <button class="btn btn-success" type="submit">등록</button> 
+			    <button class="btn btn-success" type="submit">등록</button> <!-- 댓글등록 -->
 			  </div>
 		</div>
 	</div>

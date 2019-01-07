@@ -15,10 +15,16 @@
  		<result property="date" column="wdate"/>
  	</resultMap>
  	
- 	
+ 	<!-- 게시판의 글목록을 불러오는 sql문 -->
  	<select id="boardContent" resultMap="boardMap">
  		select free_b_num, subject, content, id, hits, likes, wdate  
  		from free_board order by 1 desc 
+ 	</select>
+ 	
+ 	<!-- 선택한 게시글의 내용을 불러오는 sql문 -->
+ 	<select id="getArticle" parameterType="string" resultMap="boardMap">
+ 		select free_b_num, subject, content, id, hits, likes, wdate  
+ 		from free_board where free_b_num=#{num}
  	</select>
  	<insert id="articleWrite" parameterType="board">
  		insert into free_board values(

@@ -124,3 +124,22 @@ a.nav-link {
 .art_result .btn:first-child {
 	margin-right: 5px;
 }
+
+/*메인페이지 프론트 게시글*/
+.front_art> hr{
+	color:black;
+	
+}
+
+/*작성된 글보기*/
+ul#reple{
+	list-style: none;
+	margin: 0em;
+	padding: 0em;
+}
+div#repleInfo{
+	font-weight: bold;
+}
+ul#reple li{
+	list-style: none;
+}

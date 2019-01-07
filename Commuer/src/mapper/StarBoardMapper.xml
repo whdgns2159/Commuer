@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="board.model.StarBoardMapper">
+ 
+  	<!-- 칼럼과 VO객체의 명명이 다를경우 맵핑해준다. -->
+ 	<resultMap type="board" id="boardMap">
+ 		<id property="num" column="star_b_num"/>
+ 		<result property="subject" column="subject"/>
+ 		<result property="content" column="content"/>
+ 		<result property="id" column="id"/>
+ 		<result property="hits" column="hits"/>
+ 		<result property="likes" column="likes"/>
+ 		<result property="date" column="wdate"/>
+ 	</resultMap>
+ 	
+ 	
+ 	<select id="boardContent" resultMap="boardMap">
+ 		select star_b_num, subject, content, id, hits, likes, wdate  
+ 		from star_board order by 1 desc 
+ 	</select>
+ 	
+ </mapper>

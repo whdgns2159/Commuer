@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/top.jsp"/>
 <jsp:include page="/boardList.jsp"/>
 
@@ -33,8 +34,10 @@
 					<c:forEach var="i" items="${BT}">
 						<tr>
 							<td width="5%">${i.num}</td>
-							<td width="65%">${i.subject}</td>
-							<td width="10%">${i.date}</td>
+							<td width="65%" ><a  href="#" onclick="article_link('${i.num}','${tn}')">${i.subject}</a></td>
+							<td width="10%">
+								<fmt:formatDate value="${i.date}" pattern="yyyy-MM-dd"/>
+							</td>
 							<td width="10%">${i.hits}</td>
 							<td width="10%">${i.likes}</td>
 						</tr>
@@ -66,15 +69,30 @@
 				</tr> --%>
 			</tbody>
 		</table>
-		<c:if test="${loginUser ne null }">
-		<div class="art_write" style="text-align:right">
-			<button class="btn btn-primary" type="button" onclick="">글쓰기</button>
-		</div>
-		</c:if>
-	</div>
-</div>
-<script>
-	var artwrite=function(){
 		
+	</div><!-- 테이블 div------------------------------------------------------ -->
+	
+	
+	<form name="art_info" action="article.do">
+		<input type="hidden" name="tn">
+		<input type="hidden" name="num">
+	</form>
+	
+	<c:if test="${loginUser ne null }">
+	<div class="row">
+		<div class="art_write" style="text-align:right">
+			<a href="board/articleWrite.jsp?tn=${tn}&num=${num}" class="btn btn-primary">글쓰기</a>
+		</div>
+	</div>
+	</c:if>
+	
+</div><!-- container -->
+<script>
+	
+	
+	var article_link=function(num, tn){
+		art_info.tn.value=tn;
+		art_info.num.value=num;
+		art_info.submit();
 	}
 </script>
