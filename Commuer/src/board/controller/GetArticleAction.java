@@ -1,10 +1,13 @@
 package board.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.model.BoardDAO;
 import board.model.BoardVO;
+import board.model.ReplyVO;
 import common.controller.AbstractAction;
 
 public class GetArticleAction extends AbstractAction {
@@ -13,16 +16,24 @@ public class GetArticleAction extends AbstractAction {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String tn=req.getParameter("tn");
-		String num=req.getParameter("num");
+		String numStr=req.getParameter("num");
+		int num=Integer.parseInt(numStr);
+		
 		BoardDAO dao=new BoardDAO();
 		
 		
-		BoardVO vo=dao.getArticle(tn, num);
+		BoardVO article=dao.getArticle(tn, num);
+		List<ReplyVO> replyArr=dao.getReply(tn, num);
 		
-		req.setAttribute("ga", vo);
+		if(replyArr==null) {
+			return;
+		}
+		req.setAttribute("GA",article);
+		//req.setAttribute("GR", replyArr);
+		
 		
 		this.setViewPage("board/article.jsp");
-		this.setRedirect(true);
+		this.setRedirect(false);
 
 	}
 

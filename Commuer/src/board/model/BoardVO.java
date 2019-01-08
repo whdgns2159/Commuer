@@ -84,4 +84,10 @@ public class BoardVO {
 		this.date = date;
 	}
 
+	/*@Override
+	public String toString() {
+		return "BoardVO [num=" + num + ", subject=" + subject + ", content=" + content + ", id=" + id + ", hits=" + hits
+				+ ", likes=" + likes + ", date=" + date + "]";
+	}*/
+
 }

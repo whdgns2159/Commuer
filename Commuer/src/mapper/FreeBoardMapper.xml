@@ -14,6 +14,13 @@
  		<result property="likes" column="likes"/>
  		<result property="date" column="wdate"/>
  	</resultMap>
+ 	<resultMap type="reply" id="replyMap">
+ 		<id property="ReplyNum" column="free_b_r_num"/>
+ 		<result property="BoardNum" column="free_b_num"/>
+ 		<result property="id" column="id"/>
+ 		<result property="content" column="content"/>
+ 		<result property="wdate" column="wdate"/>
+ 	</resultMap>
  	
  	<!-- 게시판의 글목록을 불러오는 sql문 -->
  	<select id="boardContent" resultMap="boardMap">
@@ -22,22 +29,25 @@
  	</select>
  	
  	<!-- 선택한 게시글의 내용을 불러오는 sql문 -->
- 	<select id="getArticle" parameterType="string" resultMap="boardMap">
+ 	<select id="getArticle" parameterType="_int" resultMap="boardMap">
  		select free_b_num, subject, content, id, hits, likes, wdate  
  		from free_board where free_b_num=#{num}
  	</select>
+ 	<!-- 게시판에 글을 쓰는 sql문 -->
  	<insert id="articleWrite" parameterType="board">
  		insert into free_board values(
  			free_board_seq.nextval,
  			#{subject},
  			#{content},
  			#{id},
- 			0,
- 			0,
+ 			#{hits},
+ 			#{likes},
  			sysdate
  		)
- 		
- 		
  	</insert>
- 	
+ 	<!-- 리플을 볼러오는 sql문 -->
+ 	<select id="getReply" parameterType="_int" resultMap="replyMap">
+ 		select * from free_board_reply where free_b_num=#{num} order by free_b_r_num
+ 	</select>
+ 	<!--  -->
  </mapper>

@@ -6,24 +6,25 @@
 <jsp:include page="/boardList.jsp"/>
 
 <div class="container">
+
 	<section>
 		<hr color="red">
 		<header>
-			<div><h3>${ga.subject }</h3></div>
+			<div><h3>${GA.subject}</h3></div>
 			<div class="row">
 				<div class="col text-left">
-					<span>${ga.id}</span>
+					<span>${GA.id}</span>
 				</div>
 				<div class="col text-right">
-					<span><fmt:formatDate value="${ga.wdate}" pattern="yyyy-MM-dd"/></span>
-					<span>${ga.hits }</span>
+					<span><fmt:formatDate value="${GA.date}" pattern="yyyy-MM-dd"/></span>
+					<span>${GA.hits}</span>
 				</div>
 			</div>
 		</header>
 		<hr color="red">
 		<div>
 			<article>
-				${ga.content}
+				${GA.content}
 			</article>
 		</div>
 	</section>

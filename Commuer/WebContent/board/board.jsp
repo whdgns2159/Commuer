@@ -81,7 +81,7 @@
 	<c:if test="${loginUser ne null }">
 	<div class="row">
 		<div class="art_write" style="text-align:right">
-			<a href="board/articleWrite.jsp?tn=${tn}&num=${num}" class="btn btn-primary">글쓰기</a>
+			<a href="articleWrite.do?tn=${tn}" class="btn btn-primary">글쓰기</a>
 		</div>
 	</div>
 	</c:if>

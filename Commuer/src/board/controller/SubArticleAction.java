@@ -18,8 +18,15 @@ public class SubArticleAction extends AbstractAction {
 		
 		//세션에서 유저정보 가져오기
 		HttpSession ses=req.getSession();
-		Object uinfo=ses.getAttribute("uinfo");
-		
+		Object uinfo=ses.getAttribute("loginUser");
+		if(uinfo==null) {
+			req.setAttribute("msg","로그인 해야 이용 가능해요");
+			String loc="javascript:history.back()";
+			req.setAttribute("loc", loc);
+			this.setViewPage("user/message.jsp");
+			this.setRedirect(false);
+			return;
+		}
 		UserVO userInfo=(UserVO)uinfo;
 		
 		//게시판넘버 가져오기
@@ -31,6 +38,7 @@ public class SubArticleAction extends AbstractAction {
 		String content=req.getParameter("content");
 		String id=userInfo.getId();
 		
+		System.out.println("subject:"+subject+"content: "+content+"id: "+id);
 				
 		BoardVO article=new BoardVO(0 , subject, content, id, 0, 0, null);
 		
