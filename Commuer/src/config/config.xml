@@ -6,6 +6,7 @@
   <typeAliases>
   	<typeAlias type="user.model.UserVO" alias="user"/>
   	<typeAlias type="board.model.BoardVO" alias="board"/>
+  	<typeAlias type="board.model.ReplyVO" alias="reply"/>
   </typeAliases>
   <environments default="development">
    <environment id="development">

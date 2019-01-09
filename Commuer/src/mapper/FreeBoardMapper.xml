@@ -14,9 +14,10 @@
  		<result property="likes" column="likes"/>
  		<result property="date" column="wdate"/>
  	</resultMap>
+ 	
  	<resultMap type="reply" id="replyMap">
  		<id property="ReplyNum" column="free_b_r_num"/>
- 		<result property="BoardNum" column="free_b_num"/>
+ 		<result property="ArticleNum" column="free_b_num"/>
  		<result property="id" column="id"/>
  		<result property="content" column="content"/>
  		<result property="wdate" column="wdate"/>
@@ -45,9 +46,19 @@
  			sysdate
  		)
  	</insert>
+ 	<!-- 리플을 작성하는 sql문 -->
+ 	<insert id="subReply" parameterType="reply" >
+ 		insert into free_board_reply values(
+ 			free_board_reply_seq.nextval,
+ 			#{ArticleNum},
+ 			#{id},
+ 			#{content},
+ 			sysdate
+ 		)
+ 	</insert>
  	<!-- 리플을 볼러오는 sql문 -->
  	<select id="getReply" parameterType="_int" resultMap="replyMap">
  		select * from free_board_reply where free_b_num=#{num} order by free_b_r_num
  	</select>
- 	<!--  -->
+ 	
  </mapper>

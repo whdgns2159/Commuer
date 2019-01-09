@@ -98,6 +98,20 @@ public class BoardDAO {
 		}
 	}
 	
+	/**댓글 작성하기*/
+	public int subReply(String tn, ReplyVO vo) {//게시판번호, 게시글번호, 댓글, 작성자아이디 받아오기
+		try {
+			NS=bChoice(tn);
+			
+			ses=fac.openSession(true);
+			int n=ses.insert(NS+".subReply", vo);
+			
+			return n;
+		} finally {
+			if(ses!=null) ses.close();
+		}
+	}
+	
 	/**선택한 게시글의 댓글 불러오기*/
 	public List<ReplyVO> getReply(String tn, int num) {
 		try {

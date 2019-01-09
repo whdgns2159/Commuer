@@ -29,6 +29,9 @@ public class GetArticleAction extends AbstractAction {
 			return;
 		}
 		req.setAttribute("GA",article);
+		
+		req.setAttribute("tn", tn);
+		req.setAttribute("num", num);
 		//req.setAttribute("GR", replyArr);
 		
 		

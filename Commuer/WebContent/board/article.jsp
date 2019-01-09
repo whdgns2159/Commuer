@@ -60,10 +60,14 @@
 	</section>
 	<div>
 		<div class="input-group mb-3">
-			  <input type="text" class="form-control" placeholder="Search">
+			<form action="subReply.do" method="get">
+			  <input type="text" class="form-control" placeholder="Search" name="content">
+			  <input type="hidden" name="tn" value="${tn}"/>
+			  <input type="hidden" name="num" value="${num}"/>
 			  <div class="input-group-append">
 			    <button class="btn btn-success" type="submit">등록</button> <!-- 댓글등록 -->
 			  </div>
+			</form>
 		</div>
 	</div>
 </div>
