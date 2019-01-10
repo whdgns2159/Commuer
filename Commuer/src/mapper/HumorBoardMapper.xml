@@ -15,11 +15,48 @@
  		<result property="date" column="wdate"/>
  	</resultMap>
  	
+ 	<resultMap type="reply" id="replyMap">
+ 		<id property="ReplyNum" column="humor_b_r_num"/>
+ 		<result property="ArticleNum" column="humor_b_num"/>
+ 		<result property="id" column="id"/>
+ 		<result property="content" column="content"/>
+ 		<result property="wdate" column="wdate"/>
+ 	</resultMap>
  	
  	<select id="boardContent" resultMap="boardMap">
  		select humor_b_num, subject, content, id, hits, likes, wdate  
  		from humor_board order by 1 desc 
  	</select>
  	
- 	
+ 	<!-- 선택한 게시글의 내용을 불러오는 sql문 -->
+ 	<select id="getArticle" parameterType="_int" resultMap="boardMap">
+ 		select humor_b_num, subject, content, id, hits, likes, wdate  
+ 		from humor_board where humor_b_num=#{num}
+ 	</select>
+ 	<!-- 게시판에 글을 쓰는 sql문 -->
+ 	<insert id="articleWrite" parameterType="board">
+ 		insert into humor_board values(
+ 			humor_board_seq.nextval,
+ 			#{subject},
+ 			#{content},
+ 			#{id},
+ 			#{hits},
+ 			#{likes},
+ 			sysdate
+ 		)
+ 	</insert>
+ 	<!-- 리플을 작성하는 sql문 -->
+ 	<insert id="subReply" parameterType="reply" >
+ 		insert into humor_board_reply values(
+ 			humor_board_reply_seq.nextval,
+ 			#{ArticleNum},
+ 			#{id},
+ 			#{content},
+ 			sysdate
+ 		)
+ 	</insert>
+ 	<!-- 리플을 볼러오는 sql문 -->
+ 	<select id="getReply" parameterType="_int" resultMap="replyMap">
+ 		select humor_b_r_num, humor_b_num, id, content, wdate from humor_board_reply where humor_b_num=#{num} 
+ 	</select>
  </mapper>

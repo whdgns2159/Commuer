@@ -125,4 +125,16 @@ public class BoardDAO {
 			if(ses!=null) ses.close();
 		}
 	}
+	
+	/**조회수 증가*/
+	public void	increaseHits(String tn, int num) {
+		try {
+			NS=bChoice(tn);
+			
+			ses=fac.openSession(true);
+			ses.update(NS+".increaseHits", num);
+		} finally {
+			if(ses!=null) ses.close();
+		}
+	}
 }

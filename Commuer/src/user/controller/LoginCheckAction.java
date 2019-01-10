@@ -8,7 +8,7 @@ import common.controller.AbstractAction;
 import user.model.UserDAO;
 import user.model.UserVO;
 
-public class LoginAction extends AbstractAction {
+public class LoginCheckAction extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {

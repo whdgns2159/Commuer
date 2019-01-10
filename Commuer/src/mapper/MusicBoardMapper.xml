@@ -15,10 +15,47 @@
  		<result property="date" column="wdate"/>
  	</resultMap>
  	
+ 	<resultMap type="reply" id="replyMap">
+ 		<id property="ReplyNum" column="music_b_r_num"/>
+ 		<result property="ArticleNum" column="music_b_num"/>
+ 		<result property="id" column="id"/>
+ 		<result property="content" column="content"/>
+ 		<result property="wdate" column="wdate"/>
+ 	</resultMap>
  	
  	<select id="boardContent" resultMap="boardMap">
  		select music_b_num, subject, content, id, hits, likes, wdate  
  		from music_board order by 1 desc 
  	</select>
- 	
+ 	<!-- 선택한 게시글의 내용을 불러오는 sql문 -->
+ 	<select id="getArticle" parameterType="_int" resultMap="boardMap">
+ 		select music_b_num, subject, content, id, hits, likes, wdate  
+ 		from music_board where music_b_num=#{num}
+ 	</select>
+ 	<!-- 게시판에 글을 쓰는 sql문 -->
+ 	<insert id="articleWrite" parameterType="board">
+ 		insert into music_board values(
+ 			music_board_seq.nextval,
+ 			#{subject},
+ 			#{content},
+ 			#{id},
+ 			#{hits},
+ 			#{likes},
+ 			sysdate
+ 		)
+ 	</insert>
+ 	<!-- 리플을 작성하는 sql문 -->
+ 	<insert id="subReply" parameterType="reply" >
+ 		insert into music_board_reply values(
+ 			music_board_reply_seq.nextval,
+ 			#{ArticleNum},
+ 			#{id},
+ 			#{content},
+ 			sysdate
+ 		)
+ 	</insert>
+ 	<!-- 리플을 볼러오는 sql문 -->
+ 	<select id="getReply" parameterType="_int" resultMap="replyMap">
+ 		select music_b_r_num, music_b_num, id, content, wdate from music_board_reply where music_b_num=#{num} 
+ 	</select>
  </mapper>

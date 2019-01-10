@@ -58,7 +58,10 @@
  	</insert>
  	<!-- 리플을 볼러오는 sql문 -->
  	<select id="getReply" parameterType="_int" resultMap="replyMap">
- 		select * from free_board_reply where free_b_num=#{num} order by free_b_r_num
+ 		select free_b_r_num, free_b_num, id, content, wdate from free_board_reply where free_b_num=#{num} 
  	</select>
  	
+ 	<update id="increaseHits" parameterType="_int">
+ 		update free_board set hits= hits+1 where free_b_num=#{num}
+ 	</update>
  </mapper>

@@ -24,17 +24,19 @@ public class GetArticleAction extends AbstractAction {
 		
 		BoardVO article=dao.getArticle(tn, num);
 		List<ReplyVO> replyArr=dao.getReply(tn, num);
-		
+		dao.increaseHits(tn, num);
 		if(replyArr==null) {
 			return;
 		}
 		req.setAttribute("GA",article);
+		req.setAttribute("reply", replyArr);
+		
 		
 		req.setAttribute("tn", tn);
 		req.setAttribute("num", num);
 		//req.setAttribute("GR", replyArr);
 		
-		
+	
 		this.setViewPage("board/article.jsp");
 		this.setRedirect(false);
 

@@ -36,24 +36,26 @@
 		<div>
 			<span>댓글수</span>
 		</div>
-			<ul id="reple">
-			<%-- <c:if test="댓글이 있을때">
-				<c:forEach var="i" items=""> --%>
-					<li>
-						<div id="repleInfo">
-							<span><%-- ${댓글작성자이름 } --%>작성자 이름</span>
-							<span><%-- ${댓글작성일 } --%>작성일</span>
-						</div>
-						<div>
-							<span><%-- ${댓글 } --%>댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글</span>
-						</div>
-						<hr color="red">
-					</li>
-				<%-- </c:forEach>
-			</c:if> --%>
-			<%-- <c:if test="댓글이 없을때">
-				<li></li>
-			</c:if> --%>
+			<ul id="reply" style="list-style:none; padding-left:0px">
+			<!-- 리플이 있을때 -->
+				<c:if test="${reply ne null}">
+					<c:forEach var="i"  items="${reply}">
+						<li>
+							<div id="repleInfo">
+								<span>${i.id}</span>
+								<span><fmt:formatDate value="${i.wdate}" pattern="MM-dd"/></span>
+							</div>
+							<div>
+								<span>${i.content}</span>
+							</div>
+							<hr color="red">
+						</li>
+					</c:forEach>
+				</c:if> 
+				<!-- 리플이 없을때 -->
+				<c:if test="${reply eq null }">
+					<li></li>
+				</c:if>
 			</ul>
 		
 		</div>
