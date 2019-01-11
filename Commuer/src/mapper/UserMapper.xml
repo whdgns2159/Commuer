@@ -17,5 +17,9 @@
  	<select id="idCheck" parameterType="string" resultType="user">
  		select * from user_info where id=#{id}
  	</select>
- 	
+ 	<!-- 회원정보 수정하기 -->
+ 	<update id="userAdjust" parameterType="user" >
+ 		update user_info set pwd=#{pwd}, nickname=#{nickname}, email=#{email}
+ 		, tel=#{tel} where id=#{id}
+ 	</update>
  </mapper>

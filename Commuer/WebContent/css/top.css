@@ -50,7 +50,10 @@ a.nav-link {
 	font-size: 10pt;
 	text-decoration: none;
 }
-
+/*회원가입 폼*/
+.userInfo{
+	width:100%;
+}
 /*글작성 폼 css*/
 .art_title {
 	background-color: white;
@@ -142,4 +145,9 @@ div#repleInfo{
 }
 ul#reple li{
 	list-style: none;
+}
+/*회원정보 수정*/
+.userAdjust{
+	width:100%;
+	
 }

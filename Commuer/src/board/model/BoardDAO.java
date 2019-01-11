@@ -137,4 +137,20 @@ public class BoardDAO {
 			if(ses!=null) ses.close();
 		}
 	}
+	
+	/**페이징처리를 위한 총 게시물수 가져오기*/
+	public int getTotalCount(String tn) {
+		try {
+			NS=bChoice(tn);
+			
+			ses=fac.openSession();
+			int n=ses.selectOne(NS+".articleCount");
+			
+			return n;
+			
+		} finally {
+			if(ses!=null) ses.close();
+		}
+		
+	}
 }

@@ -27,6 +27,8 @@
 
 
 <script type="text/javascript" src="<%=myctx%>/js/userLogin.js"></script>
+<script type="text/javascript" src="<%=myctx%>/js/userJoin.js"></script>
+
 </head>
 <body>
 <div class="container-fluid" id="cont">
@@ -71,10 +73,10 @@
 	  	  <c:if test="${loginUser ne null}">
 	  	  	<div id="afterLogin">
 	  	  		<ul>
-		  	  		<li><a>${loginUser.id }</a></li>
+		  	  		<li><a>${loginUser.nickname }</a></li>
 		  	  		<li><a href="<%=myctx %>/logout.do">로그아웃</a></li>
 		  	  		<li><a>내가쓴글</a></li>
-		  	  		<li><a>회원수정</a></li>
+		  	  		<li><a href="<%=myctx %>/topUserAdjust.do">회원수정</a></li>
 	  	  		</ul>
 	  	  	</div>
 	  	  </c:if>

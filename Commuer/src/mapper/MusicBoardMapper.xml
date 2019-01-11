@@ -58,4 +58,8 @@
  	<select id="getReply" parameterType="_int" resultMap="replyMap">
  		select music_b_r_num, music_b_num, id, content, wdate from music_board_reply where music_b_num=#{num} 
  	</select>
+ 	<!-- 조회수 증가 -->
+ 	<update id="increaseHits" parameterType="_int">
+ 		update music_board set hits= hits+1 where music_b_num=#{num}
+ 	</update>
  </mapper>

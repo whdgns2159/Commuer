@@ -3,10 +3,9 @@
     
 <jsp:include page="/top.jsp"/>
 
-<script type="text/javascript" src="../js/userJoin.js"></script>
 
 <div class="container" align="center">
-  <form action="joinEnd.do" method="POST">
+  <form name="userJoinF" action="joinEnd.do" method="POST">
   <p></p>
 	  <div class="row" >
 	  	<div class="col-md-10">
@@ -14,8 +13,7 @@
 			    <thead>
 			      <tr>
 			        <th width="20%"><h2>정보입력</h2></th>
-			        <th></th>
-			        <th></th>
+			      
 			      </tr>
 			    </thead>
 			    <tbody>
@@ -73,7 +71,7 @@
 	  </div>
 	  <div class="row">
 	  	<div class="col-md-12">
-	  		<button class="btn btn-primary" type="submit">제출</button>
+	  		<button class="btn btn-primary" type="button" onclick="joinSub()">제출</button>
 	  	</div>
 	  </div>
   </form>

@@ -15,7 +15,7 @@
 		<table>
 			<thead>
 				<tr>
-					<td width="5%">#</td>
+					<td width="5%">#${totalCount }</td>
 					<td width="65%">제목</td>
 					<td width="10%">날짜</td>
 					<td width="10%">조회수</td>

@@ -59,4 +59,8 @@
  	<select id="getReply" parameterType="_int" resultMap="replyMap">
  		select star_b_r_num, star_b_num, id, content, wdate from star_board_reply where star_b_num=#{num} 
  	</select>
+ 	<!-- 조회수 증가 -->
+ 	<update id="increaseHits" parameterType="_int">
+ 		update star_board set hits= hits+1 where star_b_num=#{num}
+ 	</update>
  </mapper>

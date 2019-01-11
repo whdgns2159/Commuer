@@ -62,6 +62,21 @@ public class UserDAO {
 			if(ses!=null) ses.close();
 		}
 	}
-	
+
+	/**유저 회원정보 변경*/
+	public int userAdjust(UserVO vo) {
+		try {
+			ses=fac.openSession(true);
+			int n=ses.update(NS+".userAdjust", vo);
+			
+			return n;
+		} finally {
+			if(ses!=null) ses.close();
+		}
+
+	}
+
+
+
 	
 }

@@ -59,4 +59,8 @@
  	<select id="getReply" parameterType="_int" resultMap="replyMap">
  		select humor_b_r_num, humor_b_num, id, content, wdate from humor_board_reply where humor_b_num=#{num} 
  	</select>
+ 	<!-- 조회수 증가 -->
+ 	<update id="increaseHits" parameterType="_int">
+ 		update humor_board set hits= hits+1 where humor_b_num=#{num}
+ 	</update>
  </mapper>

@@ -1,22 +1,27 @@
-	$(function(){
-		/* $('#userInfo tr:odd').css('background','rgb(133, 114, 238)'); */
-		$('#userInfo').css({
-			'font-size':'12pt',
-			'font-weight':'bold'
-			
-		});
-		$('.btn-outline-primary').css('color','darkviolet');
-		/* $('tr').firstchild().css('text-align','right'); */
-	});
-
-
-	var idCheck=function(){
-		var url='idCheck.jsp';
-		win = window.open(url, 'idCheck','width=400, height=400, left=100, top=100]');
+var joinSub=function(){
+	if(!userJoinF.userId.value){
+		alert('닉네임을 입력해주세요');
+		return;
 	}
-	
-	var nicknameCheck=function(){
-		var url='nicknameCheck.jsp';
-		win = window.open(url, 'idCheck','width=400, height=400, left=100, top=100]');
+	if(!userJoinF.userNick.value){
+		alert('닉네임을 입력해주세요');
+		return;
 	}
-	
+	if(!userJoinF.userPwd.value){
+		alert('비밀번호를 입력해주세요');
+		return;
+	}
+	if(!userJoinF.pwdCheck.value){
+		alert('비밀번호를 확인해주세요');
+		return;
+	}
+	if(!userJoinF.userEmail.value){
+		alert('이메일을 입력해주세요');
+		return;
+	}
+	if(!userJoinF.userTel.value){
+		alert('연락처을 입력해주세요');
+		return;
+	}
+	userJoinF.submit();
+	}
