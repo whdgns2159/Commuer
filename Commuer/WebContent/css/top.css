@@ -45,11 +45,16 @@ a.nav-link {
 	float: left;
 	width: 100px;
 }
-
-#afterLogin ul li a:link {
+/* 
+#afterLogin ul li a:link, a:hover, a:visited {
 	font-size: 10pt;
 	text-decoration: none;
 }
+
+.ConnectedUser li a, a:link, a:hover, a:visited{
+	display:inline-block;
+	text-decoreation:none;
+} */
 /*회원가입 폼*/
 .userInfo{
 	width:100%;

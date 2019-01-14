@@ -2,7 +2,9 @@ package board.model;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -51,7 +53,7 @@ public class BoardDAO {
 	}
 	//---------------------------------------------------------------------
 	/**해당 게시판의 DB 얻어오기*/
-	public List<BoardVO> getSelectedBoard(String tn) {
+	public List<BoardVO> getSelectedBoard(String tn, int start, int end) {
 		try {
 			int inttn=Integer.parseInt(tn);
 			if(inttn<1) {
@@ -63,7 +65,16 @@ public class BoardDAO {
 			NS=bChoice(tn);
 			
 			ses=fac.openSession();
-			List<BoardVO> arr=ses.selectList(NS+".boardContent");
+			
+			Map<String, String> num=new HashMap<>();
+			
+			String s=Integer.toString(start);
+			String e=Integer.toString(end);
+			
+			num.put("start", s);
+			num.put("end", e);
+			
+			List<BoardVO> arr=ses.selectList(NS+".boardContent", num);
 		return arr;
 		}finally {
 			if(ses!=null) ses.close();

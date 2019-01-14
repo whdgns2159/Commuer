@@ -24,9 +24,12 @@
  	</resultMap>
  	
  	<!-- 게시판의 글목록을 불러오는 sql문 -->
- 	<select id="boardContent" resultMap="boardMap">
- 		select free_b_num, subject, content, id, hits, likes, wdate  
- 		from free_board order by 1 desc 
+ 	<select id="boardContent" parameterType="Map" resultMap="boardMap">
+ 		<!-- select free_b_num, subject, content, id, hits, likes, wdate  
+ 		from free_board order by 1 desc  -->
+ 		select *  from(select rownum rn, a.* 
+ 							 from(select free_b_num, subject, content, id, hits, likes, wdate from free_board order by free_b_num desc) a )
+ 					where rn between #{start} and #{end}
  	</select>
  	
  	<!-- 선택한 게시글의 내용을 불러오는 sql문 -->

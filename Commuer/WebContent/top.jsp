@@ -72,11 +72,11 @@
 	  <!-- 로그인 후 userinfo상태-------------------------------------------------------------- -->
 	  	  <c:if test="${loginUser ne null}">
 	  	  	<div id="afterLogin">
-	  	  		<ul>
-		  	  		<li><a>${loginUser.nickname }</a></li>
-		  	  		<li><a href="<%=myctx %>/logout.do">로그아웃</a></li>
-		  	  		<li><a>내가쓴글</a></li>
-		  	  		<li><a href="<%=myctx %>/topUserAdjust.do">회원수정</a></li>
+	  	  		<ul class="ConnectedUser">
+		  	  		<li><strong>${loginUser.nickname }</strong></li>
+		  	  		<li><a  href="<%=myctx %>/logout.do">로그아웃</a></li>
+		  	  		<li><a >내가쓴글</a></li>
+		  	  		<li><a  href="<%=myctx %>/topUserAdjust.do">회원수정</a></li>
 	  	  		</ul>
 	  	  	</div>
 	  	  </c:if>

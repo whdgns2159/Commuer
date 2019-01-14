@@ -17,7 +17,7 @@ public class BoardAction extends AbstractAction {
 		int tn=Integer.parseInt(tnStr);
 		
 		BoardDAO dao=new BoardDAO();
-		List<BoardVO> arr=dao.getSelectedBoard(tnStr);
+		
 		
 		
 		//페이징 처리하기---------------------------------------------------
@@ -46,6 +46,7 @@ public class BoardAction extends AbstractAction {
 		int start=end -(pageSize-1);
 		//------------------------------------------------------------------
 
+		List<BoardVO> arr=dao.getSelectedBoard(tnStr, start, end);
 		req.setAttribute("BT", arr);
 		req.setAttribute("tn", tn);
 		
