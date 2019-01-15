@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import board.model.BoardDAO;
 import board.model.BoardVO;
 import common.controller.AbstractAction;
+import user.model.UserBookmarkVO;
+import user.model.UserVO;
 
 public class BoardAction extends AbstractAction {
 
@@ -20,7 +23,7 @@ public class BoardAction extends AbstractAction {
 		
 		
 		
-		//페이징 처리하기---------------------------------------------------
+		/**페이징 처리하기*/
 		
 		String cpStr=req.getParameter("cpage");
 		if(cpStr==null||cpStr.trim().isEmpty()) {
@@ -47,6 +50,21 @@ public class BoardAction extends AbstractAction {
 		//------------------------------------------------------------------
 
 		List<BoardVO> arr=dao.getSelectedBoard(tnStr, start, end);
+		
+		/**북마크 여부 가져오기*/
+		HttpSession ses=req.getSession();
+		UserVO userInfo=(UserVO)ses.getAttribute("loginUser");
+		String id="";
+		if(userInfo!=null) {
+			id=userInfo.getId();
+		}
+		UserBookmarkVO bookmark=dao.getBookmark(id, tnStr);
+		
+		if(bookmark !=null && bookmark.getTn()!=null&bookmark.getTn().equals(tnStr)) {
+			req.setAttribute("BM", bookmark);
+		}
+		//-----------------------------------------------------------------
+		
 		req.setAttribute("BT", arr);
 		req.setAttribute("tn", tn);
 		

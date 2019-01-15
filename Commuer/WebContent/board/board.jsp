@@ -7,13 +7,21 @@
 
 <div class="container">
 	<div>
-		<h1>${tn}</h1>
+		<h1>${tn}
+		<!-- 즐겨찾기(북마크) 버튼 구현 --> 
+		<c:if test="${BM eq null }">
+			<a href="bookmark.do?tn=${tn }"><img src="images\beforeBM.png" width="20px" height="20px"></a>
+		</c:if>
+		<c:if test="${BM ne null }">
+			<a href="delBookmark.do?tn=${tn }"><img src="images\afterBM.png" width="20px" height="20px"></a>
+		</c:if>
+		</h1>
 	</div>
 	<div class="table-responsive">
 		<table class="table">
 			<thead>
 				<tr>
-					<td width="5%">#${totalCount }<img alt="" src="" onclick=""></td>
+					<td width="5%">#</td>
 					<td width="65%">제목</td>
 					<td width="10%">날짜</td>
 					<td width="10%">조회수</td>
@@ -50,19 +58,20 @@
 			<ul class="pagination">
 				<c:forEach var="i" begin="1" end="${pageCount}" step="1">
 					<c:if test="${i eq cpage }">
-						<li class="page-item active"><a class="page-link" href="board.do?tn=${tn }&cpage=${i}">${i }</a>
-						</li>
+						<li class="page-item active"><a class="page-link"
+							href="board.do?tn=${tn }&cpage=${i}">${i }</a></li>
 					</c:if>
 					<c:if test="${i ne cpage }">
-						<li class="page-item"><a class="page-link" href="board.do?tn=${tn }&cpage=${i}">${i }</a></li>
+						<li class="page-item"><a class="page-link"
+							href="board.do?tn=${tn }&cpage=${i}">${i }</a></li>
 					</c:if>
 				</c:forEach>
 			</ul>
 		</div>
 		<div class="col-md-1">
 			<form name="art_info" action="article.do">
-				<input type="hidden" name="tn"> <input type="hidden"
-					name="num">
+				<input type="hidden" name="tn"> 
+				<input type="hidden" name="num">
 			</form>
 			<c:if test="${loginUser ne null }">
 				<div class="row">

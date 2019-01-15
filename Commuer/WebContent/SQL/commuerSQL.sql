@@ -203,5 +203,13 @@ create table user_Info(
   reg_date date not null,
   constraint user_id_pk primary key (id)
 );
+--북마크 테이블-----------------------------------------------------------------------
+create table user_bookmark (
+  
+  id varchar2(20),
+  tn varchar2(2),
+  constraint id_fk foreign key (id) references user_info(id)
+);
 
+drop table user_bookmark;
 

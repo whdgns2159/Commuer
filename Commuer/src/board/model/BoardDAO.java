@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import user.model.UserBookmarkVO;
+
 public class BoardDAO {
 	private  String NS="board.model.FreeBoardMapper";
 	
@@ -164,4 +166,62 @@ public class BoardDAO {
 		}
 		
 	}
+	
+	/**게시판을 북마크하는 메소드*/
+	public int setBookmark(String tn, String id) {
+		try {
+			
+			NS="board.model.BookmarkMapper";
+			ses=fac.openSession(true);
+			Map<String, String> map=new HashMap<>();
+			map.put("tn", tn);
+			map.put("id", id);
+			
+			int n=ses.insert(NS+".setBookmark", map);
+			
+			return n;
+		} finally {
+			if(ses!=null) ses.close();
+		}
+		
+	}
+	
+	/**게시판별 북마크 여부 가져오기*/
+	public UserBookmarkVO getBookmark(String id, String tn) {
+		try {
+			NS="board.model.BookmarkMapper";
+			
+			ses=fac.openSession();
+			Map<String, String> map=new HashMap<>();
+			map.put("tn", tn);
+			map.put("id", id);
+			
+			UserBookmarkVO vo=ses.selectOne(NS+".getBookmark", map);
+			
+			return vo;
+			
+		} finally {
+			if(ses!=null) ses.close();
+		}
+		
+	}
+
+	public void delBookmark(String id, String tn) {
+		try {
+			NS="board.model.BookmarkMapper";
+			
+			ses=fac.openSession();
+			Map<String, String> map=new HashMap<>();
+			map.put("tn", tn);
+			map.put("id", id);
+			
+			ses.delete(NS+".delBookmark", map);
+		} finally {
+			if(ses!=null) ses.close();
+		}
+		
+	}
+	
+	
+	
 }

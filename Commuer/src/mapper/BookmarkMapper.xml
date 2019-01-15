@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.model.BookmarkMapper">
+	<insert id="setBookmark" parameterType="map">
+		insert into user_bookmark values(#{id}, #{tn})
+	</insert>
+	<select id="getBookmark" parameterType="map" resultType="bookmark">
+		select id, tn from user_bookmark where id=#{id}
+	</select>
+
+
+</mapper>
