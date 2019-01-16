@@ -21,10 +21,10 @@ public class GetArticleAction extends AbstractAction {
 		
 		BoardDAO dao=new BoardDAO();
 		
-		
+		dao.increaseHits(tn, num);
 		BoardVO article=dao.getArticle(tn, num);
 		List<ReplyVO> replyArr=dao.getReply(tn, num);
-		dao.increaseHits(tn, num);
+		
 		if(replyArr==null) {
 			return;
 		}

@@ -187,7 +187,7 @@ public class BoardDAO {
 	}
 	
 	/**게시판별 북마크 여부 가져오기*/
-	public UserBookmarkVO getBookmark(String id, String tn) {
+	public List<UserBookmarkVO> getBookmark(String id, String tn) {
 		try {
 			NS="board.model.BookmarkMapper";
 			
@@ -196,9 +196,9 @@ public class BoardDAO {
 			map.put("tn", tn);
 			map.put("id", id);
 			
-			UserBookmarkVO vo=ses.selectOne(NS+".getBookmark", map);
+			List<UserBookmarkVO> arr=ses.selectList(NS+".getBookmark", map);
 			
-			return vo;
+			return arr;
 			
 		} finally {
 			if(ses!=null) ses.close();
@@ -206,16 +206,17 @@ public class BoardDAO {
 		
 	}
 
-	public void delBookmark(String id, String tn) {
+	public int delBookmark(String id, String tn) {
 		try {
 			NS="board.model.BookmarkMapper";
 			
 			ses=fac.openSession();
 			Map<String, String> map=new HashMap<>();
-			map.put("tn", tn);
 			map.put("id", id);
+			map.put("tn", tn);
+			int n=ses.delete(NS+".delBookmark", map);
 			
-			ses.delete(NS+".delBookmark", map);
+			return n;
 		} finally {
 			if(ses!=null) ses.close();
 		}

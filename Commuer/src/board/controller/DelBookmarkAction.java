@@ -18,11 +18,17 @@ public class DelBookmarkAction extends AbstractAction {
 		UserVO userInfo=(UserVO)ses.getAttribute("loginUser");
 		
 		String tn=req.getParameter("tn");
-		String id=userInfo.getId();
+		String id="";
+		if(userInfo!=null) {
+			 id=userInfo.getId();
+		}
 		
+		/*System.out.println(id+"/"+tn);*/
 		BoardDAO dao=new BoardDAO();
 		dao.delBookmark(id, tn);
-
+		
+		this.setViewPage("main.do");
+		this.setRedirect(false);
 	}
 
 }

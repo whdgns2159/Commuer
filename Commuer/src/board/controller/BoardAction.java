@@ -58,9 +58,12 @@ public class BoardAction extends AbstractAction {
 		if(userInfo!=null) {
 			id=userInfo.getId();
 		}
-		UserBookmarkVO bookmark=dao.getBookmark(id, tnStr);
+		List<UserBookmarkVO> bookmark=dao.getBookmark(id, tnStr);
 		
-		if(bookmark !=null && bookmark.getTn()!=null&bookmark.getTn().equals(tnStr)) {
+		if(bookmark!=null ) {
+			while(bookmark.iterator().hasNext()) {
+				
+			}
 			req.setAttribute("BM", bookmark);
 		}
 		//-----------------------------------------------------------------

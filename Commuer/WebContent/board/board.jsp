@@ -9,12 +9,16 @@
 	<div>
 		<h1>${tn}
 		<!-- 즐겨찾기(북마크) 버튼 구현 --> 
-		<c:if test="${BM eq null }">
-			<a href="bookmark.do?tn=${tn }"><img src="images\beforeBM.png" width="20px" height="20px"></a>
-		</c:if>
-		<c:if test="${BM ne null }">
-			<a href="delBookmark.do?tn=${tn }"><img src="images\afterBM.png" width="20px" height="20px"></a>
-		</c:if>
+		<c:if test="${loginUser ne null }">
+			<c:forEach var="j" items="${BM}">
+			<c:if test="${j.tn eq null}">
+				<a href="bookmark.do?tn=${tn }"><img src="images\beforeBM.png" width="20px" height="20px"></a>
+			</c:if>
+			<c:if test="${j.tn eq tn} ">
+				<a href="delBookmark.do?tn=${tn }"><img src="images\afterBM.png" width="20px" height="20px"></a>
+			</c:if>
+			</c:forEach>
+		</c:if>	
 		</h1>
 	</div>
 	<div class="table-responsive">
