@@ -33,7 +33,7 @@ public class BoardDAO {
 	}
 
 	/**게시판 셀렉트 함수*/
-	public String bChoice(String tn){
+	public String NSChoice(String tn){
 		switch(tn) {
 			/*case "1":
 				NS="board.model.Mapper1";
@@ -64,7 +64,7 @@ public class BoardDAO {
 				tn="1";
 			}
 				
-			NS=bChoice(tn);
+			NS=NSChoice(tn);
 			
 			ses=fac.openSession();
 			
@@ -86,7 +86,7 @@ public class BoardDAO {
 	/**게시물 작성하기*/
 	public int insertBoard(String tn, BoardVO vo){
 		try {
-			NS=bChoice(tn);
+			NS=NSChoice(tn);
 			
 			ses=fac.openSession(true);
 			int n=ses.insert(NS+".articleWrite",vo);
@@ -100,7 +100,7 @@ public class BoardDAO {
 	/**선택한 게시글 불러오기*/
 	public BoardVO getArticle(String tn, int num) { //게시판번호와 해당게시판의 게시글번호를 받아온다.
 		try {
-			NS=bChoice(tn);
+			NS=NSChoice(tn);
 			
 			ses=fac.openSession();
 			BoardVO vo=ses.selectOne(NS+".getArticle", num);
@@ -114,7 +114,7 @@ public class BoardDAO {
 	/**댓글 작성하기*/
 	public int subReply(String tn, ReplyVO vo) {//게시판번호, 게시글번호, 댓글, 작성자아이디 받아오기
 		try {
-			NS=bChoice(tn);
+			NS=NSChoice(tn);
 			
 			ses=fac.openSession(true);
 			int n=ses.insert(NS+".subReply", vo);
@@ -128,7 +128,7 @@ public class BoardDAO {
 	/**선택한 게시글의 댓글 불러오기*/
 	public List<ReplyVO> getReply(String tn, int num) {
 		try {
-			NS=bChoice(tn);
+			NS=NSChoice(tn);
 			
 			ses=fac.openSession();
 			List<ReplyVO> arr=ses.selectList(NS+".getReply", num);
@@ -139,10 +139,23 @@ public class BoardDAO {
 		}
 	}
 	
+	/**댓글수 가져오기*/
+	public int totalReply(String tn, int num) {
+		try {
+			NS=NSChoice(tn);
+			
+			ses=fac.openSession();
+			int n=ses.selectOne(NS+".totalReply", num);
+			
+			return n;
+		} finally {
+			if(ses!=null) ses.close();
+		}
+	}
 	/**조회수 증가*/
 	public void	increaseHits(String tn, int num) {
 		try {
-			NS=bChoice(tn);
+			NS=NSChoice(tn);
 			
 			ses=fac.openSession(true);
 			ses.update(NS+".increaseHits", num);
@@ -154,7 +167,7 @@ public class BoardDAO {
 	/**페이징처리를 위한 총 게시물수 가져오기*/
 	public int getTotalCount(String tn) {
 		try {
-			NS=bChoice(tn);
+			NS=NSChoice(tn);
 			
 			ses=fac.openSession();
 			int n=ses.selectOne(NS+".articleCount");
@@ -205,15 +218,16 @@ public class BoardDAO {
 		}
 		
 	}
-
+	/**게시판 북마크를 취소하는 메소드*/
 	public int delBookmark(String id, String tn) {
 		try {
 			NS="board.model.BookmarkMapper";
 			
-			ses=fac.openSession();
+			ses=fac.openSession(true);
 			Map<String, String> map=new HashMap<>();
 			map.put("id", id);
 			map.put("tn", tn);
+			
 			int n=ses.delete(NS+".delBookmark", map);
 			
 			return n;

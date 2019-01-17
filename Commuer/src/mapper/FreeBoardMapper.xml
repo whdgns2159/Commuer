@@ -63,6 +63,10 @@
  	<select id="getReply" parameterType="_int" resultMap="replyMap">
  		select free_b_r_num, free_b_num, id, content, wdate from free_board_reply where free_b_num=#{num} 
  	</select>
+ 	<!-- 리플총 갯수 -->
+ 	<select id="totalReply" parameterType="_int" resultType="_int">
+ 		select count(free_b_num) from free_board_reply where free_b_num = #{num}
+ 	</select>
  	<!-- 조회수 증가 -->
  	<update id="increaseHits" parameterType="_int">
  		update free_board set hits= hits+1 where free_b_num=#{num}

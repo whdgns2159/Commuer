@@ -7,7 +7,7 @@
 		insert into user_bookmark values(#{id}, #{tn})
 	</insert>
 	<delete id="delBookmark" parameterType="map">
-		delete from user_bookmark where (select tn from user_bookmark where id=#{id}) =#{tn}
+		delete from (select tn from user_bookmark where id=#{id}) idNtn where tn =#{tn}
 	</delete>
 	<select id="getBookmark" parameterType="map" resultType="bookmark">
 		select id, tn from user_bookmark where id=#{id}

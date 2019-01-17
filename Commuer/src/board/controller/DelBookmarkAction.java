@@ -22,12 +22,16 @@ public class DelBookmarkAction extends AbstractAction {
 		if(userInfo!=null) {
 			 id=userInfo.getId();
 		}
-		
-		/*System.out.println(id+"/"+tn);*/
 		BoardDAO dao=new BoardDAO();
-		dao.delBookmark(id, tn);
+		int n=dao.delBookmark(id, tn);
 		
-		this.setViewPage("main.do");
+		String loc="";
+		if(n>0) {
+			System.out.println("合付农昏力 己傍");
+			loc="board.do?tn="+tn+"";
+		}
+		
+		this.setViewPage(loc);
 		this.setRedirect(false);
 	}
 

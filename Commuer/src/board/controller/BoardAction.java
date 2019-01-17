@@ -1,5 +1,6 @@
 package board.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,10 +62,15 @@ public class BoardAction extends AbstractAction {
 		List<UserBookmarkVO> bookmark=dao.getBookmark(id, tnStr);
 		
 		if(bookmark!=null ) {
-			while(bookmark.iterator().hasNext()) {
+			Iterator<UserBookmarkVO> it=bookmark.iterator();
+			while(it.hasNext()) {
+				UserBookmarkVO vo=it.next();
+				if(vo.getTn().equals(tnStr)) {
+					req.setAttribute("BM", vo.getTn());
+				}
 				
 			}
-			req.setAttribute("BM", bookmark);
+			
 		}
 		//-----------------------------------------------------------------
 		
