@@ -1,0 +1,46 @@
+ex03패키지 수행 순서
+[0] pom.xml에 라이브러리 등록
+===pom.xml==============================
+<!-- Add Module -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>3.2.3.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-ibatis</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+========================================
+
+[1] database.properties 를 생성
+	=>src/main/resources/props/database.properties
+			에 만들어 두기
+
+[2] appContext.xml 파일 생성
+	=> (1) DataSource빈 등록
+	   (2) SqlSessionFactoryBean등록
+	   (3) SqlSessionTemplate빈 등록
+       (4) UserDAOMyBatis빈 등록	
+
+[3] mybatis-config.xml파일 생성
+	=> typeAlias등록
+	   xxxMapper파일 등록
+
+[4] userMapper.xml파일 생성
+	=> 쿼리문 등록
+
+[5] UserDAOMyBatis 작성
+	=> SqlSessionTemplate주입하기 위해 setter구성해서
+		CRUD작업 수행
