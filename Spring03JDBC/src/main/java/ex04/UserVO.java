@@ -10,7 +10,7 @@ public class UserVO implements Serializable{
 	private Date indate;
 	public UserVO() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public UserVO(int idx, String name, String userid, String pwd, Date indate) {
 		super();
