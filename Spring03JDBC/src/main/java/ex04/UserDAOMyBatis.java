@@ -2,7 +2,6 @@ package ex04;
 
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 /*[1] Template을 이용하는 방법==> ex03패키지
  *[2] DaoSupport를 이용하는 방법 ==> ex04패키지
