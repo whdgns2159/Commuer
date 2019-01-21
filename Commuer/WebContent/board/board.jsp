@@ -39,10 +39,10 @@
 				</c:if>
 				<c:if test="${BT ne null}">
 					<c:forEach var="i" items="${BT}">
-						<tr>
+						<tr onclick="article_link('${i.num}','${tn}')">
 							<td width="5%">${i.num}</td>
-							<td width="65%"><a href="#"
-								onclick="article_link('${i.num}','${tn}')">${i.subject}</a></td>
+							<td width="65%" ><a href="#"
+								>${i.subject}</a></td>
 							<td width="10%"><fmt:formatDate value="${i.date}"
 									pattern="yyyy-MM-dd" /></td>
 							<td width="10%">${i.hits}</td>

@@ -8,8 +8,8 @@
 			<hr color="black">
 			<table>
 				<tr>
-					<td width="85%">글제목</td>
-					<td width="15%">게시일</td>
+					<td width="90%" style="font-size:8pt">글제목</td>
+					<td width="10%" style="font-size:8pt; ">게시일</td>
 				</tr>
 			</table>
 		</div>
@@ -19,8 +19,8 @@
 			<hr color="pink">
 			<table>
 				<tr>
-					<td width="85%">글제목</td>
-					<td width="15%">게시일</td>
+					<td width="90%" style="font-size:8pt">글제목</td>
+					<td width="10%" style="font-size:8pt">게시일</td>
 				</tr>
 			</table>
 		</div>
@@ -30,8 +30,8 @@
 			<hr color="pink">
 			<table>
 				<tr>
-					<td width="85%">글제목</td>
-					<td width="15%">게시일</td>
+					<td width="90%" style="font-size:8pt">글제목</td>
+					<td width="10%" style="font-size:8pt">게시일</td>
 				</tr>
 			</table>
 		</div>

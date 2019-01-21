@@ -4,9 +4,26 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
+
 	<!-- 어노테이션이 붙은것을 스캔해서 객체화하여 메모리에 올려준다 -->
-	<context:component-scan base-package="com"/>
+	<context:component-scan
+		base-package="com.tis.sample" />
+
+	<!--[1] DataSource========================================= -->
+	<bean id="jndiDataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/oracle/myshop"/>
+	</bean>
+	<!--[2] SqlSessionFactoryBean ============================= -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="jndiDataSource"/>
+		<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+	</bean>
+	
+	<!--[3] SqlSessionTemplate ================================ -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
 </beans>

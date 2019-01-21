@@ -49,6 +49,19 @@
  			sysdate
  		)
  	</insert>
+ 	<!-- 게시글 삭제하는 sql문 -->
+ 	<delete id="delArticle">
+ 		delete from free_board where free_b_num=#{num}
+ 	</delete>
+ 	<!-- 조회수 증가 -->
+ 	<update id="increaseHits" parameterType="_int">
+ 		update free_board set hits= hits+1 where free_b_num=#{num}
+ 	</update>
+ 	<!-- 총 게시글수 가져오기 -->
+ 	<select id="articleCount" resultType="_int">
+ 		select count(free_b_num) cnt from free_board
+ 	</select>
+ 	<!-- =============================================== -->
  	<!-- 리플을 작성하는 sql문 -->
  	<insert id="subReply" parameterType="reply" >
  		insert into free_board_reply values(
@@ -67,12 +80,6 @@
  	<select id="totalReply" parameterType="_int" resultType="_int">
  		select count(free_b_num) from free_board_reply where free_b_num = #{num}
  	</select>
- 	<!-- 조회수 증가 -->
- 	<update id="increaseHits" parameterType="_int">
- 		update free_board set hits= hits+1 where free_b_num=#{num}
- 	</update>
- 	<!-- 총 게시글수 가져오기 -->
- 	<select id="articleCount" resultType="_int">
- 		select count(free_b_num) cnt from free_board
- 	</select>
+ 	
+ 	
  </mapper>

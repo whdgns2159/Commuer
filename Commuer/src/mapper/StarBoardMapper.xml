@@ -59,8 +59,16 @@
  	<select id="getReply" parameterType="_int" resultMap="replyMap">
  		select star_b_r_num, star_b_num, id, content, wdate from star_board_reply where star_b_num=#{num} 
  	</select>
+ 	<!-- 리플총 갯수 -->
+ 	<select id="totalReply" parameterType="_int" resultType="_int">
+ 		select count(star_b_num) from star_board_reply where star_b_num = #{num}
+ 	</select>
  	<!-- 조회수 증가 -->
  	<update id="increaseHits" parameterType="_int">
  		update star_board set hits= hits+1 where star_b_num=#{num}
  	</update>
+ 	<!-- 총 게시글수 가져오기 -->
+ 	<select id="articleCount" resultType="_int">
+ 		select count(star_b_num) cnt from star_board
+ 	</select>
  </mapper>

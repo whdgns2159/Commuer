@@ -236,6 +236,19 @@ public class BoardDAO {
 		}
 		
 	}
+	/**게시글 삭제*/
+	public int delArticle(String tn, String num) {
+		try {
+			NS=NSChoice(tn);
+			
+			ses=fac.openSession(true);
+			int n=ses.delete(NS+".delArticle",num);
+			
+			return n;
+		} finally {
+			if(ses!=null) ses.close();
+		}
+	}
 	
 	
 	

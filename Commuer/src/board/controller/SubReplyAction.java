@@ -31,7 +31,7 @@ public class SubReplyAction extends AbstractAction {
 			
 		}
 		String msg=(n>0)?"댓글입력완료":"댓글입력 실패";
-		String loc=(n>0)?"article.do?tn="+tn+"&num="+num:"article.do?tn="+tn+"&num="+num;
+		String loc=(n>0)?"article.do?tn="+tn+"&num="+num:"javascript:history.back()";
 		
 		
 		req.setAttribute("msg", msg);

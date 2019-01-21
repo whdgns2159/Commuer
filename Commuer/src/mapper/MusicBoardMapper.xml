@@ -58,8 +58,16 @@
  	<select id="getReply" parameterType="_int" resultMap="replyMap">
  		select music_b_r_num, music_b_num, id, content, wdate from music_board_reply where music_b_num=#{num} 
  	</select>
+ 	<!-- 리플총 갯수 -->
+ 	<select id="totalReply" parameterType="_int" resultType="_int">
+ 		select count(music_b_num) from music_board_reply where music_b_num = #{num}
+ 	</select>
  	<!-- 조회수 증가 -->
  	<update id="increaseHits" parameterType="_int">
  		update music_board set hits= hits+1 where music_b_num=#{num}
  	</update>
+ 	<!-- 총 게시글수 가져오기 -->
+ 	<select id="articleCount" resultType="_int">
+ 		select count(music_b_num) cnt from music_board
+ 	</select>
  </mapper>

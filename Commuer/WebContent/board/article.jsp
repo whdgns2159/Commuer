@@ -38,7 +38,8 @@
 		<c:if test="${GA.id eq userid }">
 			<div class="col-md-2" >
 				<a href="#" class="btn btn-info btn-sm" style="color: white" >글수정</a>
-				<a href="#" class="btn btn-danger btn-sm" style="color: white" >글삭제</a>
+				<a href="delArticle.do?tn=${tn}&num=${num}&id=${GA.id}" 
+				class="btn btn-danger btn-sm" style="color: white" >글삭제</a>
 			</div>
 		</c:if>
 	</div>

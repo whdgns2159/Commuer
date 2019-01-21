@@ -12,24 +12,27 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.tis.myapp">
-		<level value="info" />
+		<level value="error" /> 
+		<!-- 개발중엔 info를써서 로그정보를 받고
+			퍼블리시 할때에는 error를 써서 오류정보만 받아온다.
+		 -->
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+		<level value="error" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="error" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="error" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="error" />
 	</logger>
 
 	<!-- Root Logger -->
