@@ -11,5 +11,5 @@ public class MemoVO {
 	private String name;
 	private String msg;
 	private Date wdate;
-	
+	private String filename;
 }////////////////////////////

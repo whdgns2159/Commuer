@@ -7,6 +7,44 @@
 	<select id="memoCount" resultType="int">
 		select count(*) from memo
 	</select>
+	<insert id="createMemo" parameterType="Memo">
+	<selectKey keyProperty="idx" resultType="int" order="BEFORE">
+		select memo_seq.nextval from dual
+	</selectKey>
+		insert into memo values(
+			#{idx},
+			#{name},
+			#{msg:VARCHAR},
+			sysdate,
+			#{filename:VARCHAR}
+		)
+	</insert>
+	
+	<!-- 자주사용하는 쿼리문을 조각sql 앨리먼트를 사용하여 지정해두고
+	나중에 include로 ref하면 된다. -->
+	<sql id="memo_col">
+		idx, name, msg, wdate, nvl(filename, 'noimage.png') filename
+	</sql>
+	
+	<select id="listMemo" parameterType="map" resultType="Memo">
+		<!-- 쿼리문에 태그괄호가 들어갈 경우 오류를 방지하기위한 CDATA섹션 -->
+		<![CDATA[
+		select * from 
+		(select rownum rn, a.* from (select ]]>
+		<include refid="memo_col"/>
+		<![CDATA[ from memo order by idx desc) a)
+		where rn >=#{start} and rn <= #{end}
+		]]>
+	</select>
+	
+	<delete id="deleteMemo" parameterType="int">
+		delete from memo where idx=#{idx}
+	</delete>
+	
+	<!-- 메모수정을 위해 메모글을 가져온다. -->
+	<select id="getMemo" parameterType="int" resultType="Memo">
+		select <include refid="memo_col"/> from memo where idx=#{idx}
+	</select>
 </mapper>
 
 

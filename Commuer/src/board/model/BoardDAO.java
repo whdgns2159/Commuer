@@ -250,6 +250,42 @@ public class BoardDAO {
 		}
 	}
 	
+	/**게시판 검색어 처리*/
+	public List<BoardVO> keywordSearch(String tn, String keyword, int start, int end) {
+		try {
+			NS=NSChoice(tn);
+			ses=fac.openSession();
+			
+			Map<String, String> map=new HashMap<>();
+			String s=Integer.toString(start);
+			String e=Integer.toString(end);
+			
+			map.put("start", s);
+			map.put("end", e);
+			map.put("keyword", keyword);
+			
+			List<BoardVO> searchResult=ses.selectList(NS+".keywordSearch", map);
+			
+			return searchResult;
+		} finally {
+			if(ses!=null) ses.close();
+		}
+	}
+	/**검색한 키워드가 들어간 게시물의 총 게시물 수 가져오기*/
+	public int getKeywordCount(String tn, String keyword) {
+		try {
+			NS=NSChoice(tn);
+			
+			ses=fac.openSession();
+			int n=ses.selectOne(NS+".keywordCount", keyword);
+			
+			return n;
+			
+		} finally {
+			if(ses!=null) ses.close();
+		}
+		
+	}
 	
 	
 }

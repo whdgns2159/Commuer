@@ -61,6 +61,20 @@
  	<select id="articleCount" resultType="_int">
  		select count(free_b_num) cnt from free_board
  	</select>
+ 	<!-- 검색어 처리 -->
+ 	<select id="keywordSearch" parameterType="Map" resultType="boardMap">
+ 		select *  from(select rownum rn, a.* 
+						 from(select free_b_num, subject, content, id, hits, likes, wdate 
+							 from free_board 
+							 where subject like '%'||'#{keyword}'||'%' 
+							 or content like '%'||'#{keyword}'||'%' 
+							 order by free_b_num desc)  a
+						 )
+ 					where rn between #{start} and #{end}
+ 	</select>
+ 	<select id="getKeywordCount" parameterType="string">
+ 		select count(free_b_num) cnt from free_board where subject like '%'||'#{keyword}'||'%'
+ 	</select>
  	<!-- =============================================== -->
  	<!-- 리플을 작성하는 sql문 -->
  	<insert id="subReply" parameterType="reply" >

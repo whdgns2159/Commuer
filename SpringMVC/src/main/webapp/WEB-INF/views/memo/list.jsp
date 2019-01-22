@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,26 +18,25 @@
 	href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
 	rel="stylesheet" type="text/css">
 <link href="../stylesheet/mycss" rel="stylesheet" type="text/css">
-	<style type="text/css">
-	
-	fieldset.scheduler-border {
-    border: solid 1px #DDD !important;
-    padding: 0 10px 10px 10px;
-    border-bottom: none;
-    height: 80%; 
-    /* max-height: 550px; */
+<style type="text/css">
+fieldset.scheduler-border {
+	border: solid 1px #DDD !important;
+	padding: 0 10px 10px 10px;
+	border-bottom: none;
+	height: 80%;
+	/* max-height: 550px; */
 }
 
 legend.scheduler-border {
-    width: auto !important;
-    border: none;
-    font-size: 14px;
+	width: auto !important;
+	border: none;
+	font-size: 14px;
 }
-	</style>
+</style>
 <title>Memo List</title>
 </head>
 <body>
-<h1>총 게시글 수: ${totalCount}</h1>
+	<h1>총 게시글 수: ${totalCount}</h1>
 	<div align="center" id="memoTab" class="container">
 
 		<!-- ----------------------------------------- -->
@@ -62,40 +62,39 @@ legend.scheduler-border {
 		<!-- ------------------------------------  -->
 		<div class="section">
 			<div class="container">
-			
+
 				<div class="row">
-				
-					
-					
-					
-					<div class="col-md-4 col-xs-12 col-sm-6" id="m" style="margin-bottom:35px">
-					<fieldset class="scheduler-border">
-    					<legend class="scheduler-border">Have a Good Time</legend>
-    					<div style="min-height:250px;">
-						<img src="./Upload/a" class="img-responsive">
+					<c:forEach var="m" items="${memoList}" varStatus="st">
+
+						<div class="col-md-4 col-xs-12 col-sm-6" id="m"
+							style="margin-bottom: 35px">
+							<fieldset class="scheduler-border">
+								<legend class="scheduler-border">Have a Good Time</legend>
+								<div style="min-height: 250px;">
+									<img src="../images/${m.filename }" class="img-responsive">
+								</div>
+								<h2 style="min-height: 100px">${m.msg }</h2>
+								<p>작성자:${m.name } 
+								[<fmt:formatDate value="${m.wdate }" 
+								pattern="yy/MM/dd hh:mm"/>]
+								</p>
+								<div class="col-md-12">
+									<a href="delete?idx=${m.idx}"><i
+										class="fa fa-2x fa-fw fa-trash-o"></i></a> <a
+										href="edit?idx=${m.idx}"><i class="fa fa-2x fa-edit fa-fw"></i></a>
+									<a><i class="fa fa-2x fa-fw fa-heart"></i></a> <a><i
+										class="fa fa-2x fa-fw hub fa-thumbs-down"></i></a>
+								</div>
+							</fieldset>
 						</div>
-						<h2 style="min-height: 100px">
-						a
-						</h2>						
-						<p>
-							작성자:a [작성일]
-						</p>
-						<div class="col-md-12">
-							<a href="delete?idx=${m.idx}"><i
-								class="fa fa-2x fa-fw fa-trash-o"></i></a> 
-							<a	href="edit?idx=${m.idx}"><i class="fa fa-2x fa-edit fa-fw"></i></a>
-							<a><i class="fa fa-2x fa-fw fa-heart"></i></a>
-							 <a><i class="fa fa-2x fa-fw hub fa-thumbs-down"></i></a>
-						</div>
-						</fieldset>
-					</div>
-						
+						<c:if test="${st.count mod 3==0 }">
 						</div><!--row end  -->
 						<div class='row'><!--새로운 행(row)시작  -->
-					
-				
+						</c:if>
+					</c:forEach>	
+
 				</div>
-				
+
 			</div>
 		</div>
 		<!--  -->
@@ -103,11 +102,17 @@ legend.scheduler-border {
 
 		<div class="row text-center">
 			<div>
-			총 글수
+				총 글수 : <span>${totalCount}</span>
 				<ul class="pagination">
 					<li><a href="#">Prev</a></li>
 					<c:forEach var="i" begin="1" end="${pageCount}">
-					    <li><a href="memos?cpage=${i}">${i}</a></li> 
+						<c:if test="${cpage eq i}">
+							<c:set var="mycss" value="active"/>
+						</c:if>
+						<c:if test="${cpage ne i}">
+							<c:set var="mycss" value=""/>
+						</c:if>
+						<li class='${mycss}'><a href="memos?cpage=${i}">${i}</a></li>
 					</c:forEach>
 					<li><a href="#">Next</a></li>
 				</ul>

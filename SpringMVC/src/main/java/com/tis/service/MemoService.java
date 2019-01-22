@@ -1,11 +1,11 @@
-package com.tis.persistence;
+package com.tis.service;
 
 import java.util.List;
 import java.util.Map;
 
 import com.tis.domain.MemoVO;
 
-public interface MemoDAO {
+public interface MemoService {
 	
 	int getTotalCount();
 	int createMemo(MemoVO memo);
@@ -13,5 +13,4 @@ public interface MemoDAO {
 	int deleteMemo(int idx);
 	int updateMemo(MemoVO memo);
 	MemoVO getMemo(int idx);
-	
 }

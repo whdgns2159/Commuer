@@ -25,13 +25,13 @@
 		<div class="rows">
 			<div class="col-md-8 col-md-offset-2">
 
-				<form role="form" name="user" method="post" action="memo.editEnd.do"
+				<form role="form" name="user" method="post" action="edit"
 					class="form-horizontal">
 
 					<h1 class="text text-center">:::Spring's 한줄 메모장 Edit:::</h1>
 					<div>
 						<div style="min-height: 250px;">
-							<img src="Upload/${memo.filename}"
+							<img src="../images/${memo.filename}"
 								class="img-thumbnail img-responsive">
 						</div>
 					</div>
@@ -45,14 +45,14 @@
 						<input type="text"
 						name="msg" id="msg" class="form-control" value="${memo.msg}" /> 
 						<label
-						for="wdate">작성일:</label> <span>${memo.wdate} [${memo.cip}]</span>
+						for="wdate">작성일:</label> <span>${memo.wdate} []</span>
 						
 					<p></p>
 
 					<button type="submit" class="btn btn-primary">
 						<i class="fa fa-edit fa-fw fa-lg"></i> Edit
 					</button>
-					<a href="memo.list.do" class="btn btn-danger"> <i
+					<a href="memos" class="btn btn-danger"> <i
 						class="fa fa-align-justify fa-fw fa-lg"></i> List
 					</a>
 				</form>

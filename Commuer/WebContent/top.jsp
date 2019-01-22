@@ -34,22 +34,24 @@
 <div class="container-fluid" id="cont">
 	<nav class="navbar">
 	  <div class="container">
-		  <div class="navbar-header">
+		  <div class="navbar-header mr-auto" >
 			  <a class="navbar-brand" href="<%=myctx %>/main.do" id="title">커뮤어</a>
 		  </div>
 		  <!-- form----------------------------------------------------------------- -->
-	 	  <form class="navbar-form  navbar-left" action="/">
+	 	 <!--  <form class="navbar-form  navbar-left" method="get" action="board.do">
 			  <div class="form-group">
 				  <div class="input-group-sm">
-				  	<input type="text" class="form-control form-control-sm" name="search">
+				  	<input name="searchResult" type="text" class="form-control form-control-sm" name="search">
 				  </div>
 			  </div>
 			  <button type="submit" class="btn btn-default btn-sm">검색</button>
 		  </form>
-		
+		 -->
 		  <!-- 로그인전 ------------------------------------------------------------------------ -->
 		  <c:if test="${loginUser eq null}">
-		  <form class="navbar-form navbar-right" name="loginF" action="<%=myctx %>/login.do">
+		  
+		  <form class="navbar-form navbar-right ml-auto" name="loginF" action="<%=myctx %>/login.do">
+			  <div class="row"> 
 			  <div class="form-group">
 				  <div class="input-group-sm">
 				  	<input type="text" class="form-control form-control-sm" name="id" placeholder="id">
@@ -61,12 +63,11 @@
 				  </div>
 			  </div>
 			  <button type="button" class="btn btn-default btn-sm" onclick="loginCheck()">로그인</button>
-		  </form>
 		  
-		  <div class="row"> 
 		  	<a class="nav-link" href="<%=myctx%>/join.do">회원가입</a>
 		  	<a class="nav-link" href="<%=myctx%>/findUser.do">아이디/비밀번호 찾기</a>
 		  </div>
+		  </form>
 		  </c:if>
 	  <!---------------------------------------------------------------------------------------- -->
 	  <!-- 로그인 후 userinfo상태-------------------------------------------------------------- -->
