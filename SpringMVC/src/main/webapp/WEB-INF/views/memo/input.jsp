@@ -46,8 +46,7 @@
 		</div>
 		<!-- ------------------------------------  -->
 		<form role="form" name="frm" method="post"
-		 action="input">
-		 <!--  enctype="multipart/form-data"> -->
+		 action="input" enctype="multipart/form-data"> 
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<a href="#"><img
@@ -76,14 +75,14 @@
 						id="name" class="form-control" /> <label for="msg"> 메모내용:
 					</label> <input type="text" name="msg" id="msg" class="form-control" />
 					<div></div>	
-						<!-- <table class="table table-responsive">
+						<table class="table table-responsive">
 							<tr>
 								<td class="text-center"><a><i class="fa fa-5x fa-fw fa-file-image-o"></i></a></td>
 								<td><input type="file" name="mfile" id="filename"
 									class="form-control">
 								</td>
-						</table> -->
-						<c:import url="/fileup"/>
+						</table> 
+					<%-- 	<c:import url="/fileup"/> --%>
 
 										<p></p>
 

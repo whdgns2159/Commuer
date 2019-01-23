@@ -45,6 +45,11 @@
 	<select id="getMemo" parameterType="int" resultType="Memo">
 		select <include refid="memo_col"/> from memo where idx=#{idx}
 	</select>
+	<!-- 메모수정후 업데이트 -->
+	<update id="editMemo" parameterType="Memo">
+		update memo set name=#{name}, msg=#{msg:VARCHAR}, filename=#{filename:VARCHAR}
+		where idx=#{idx}	
+	</update>
 </mapper>
 
 
