@@ -33,6 +33,7 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:if test="${BS eq null}">
 				<c:if test="${BT eq null or empty BT}">
 					<!-- 게시판이 비어있을때 표시하는 내용 -->
 					<tr>
@@ -51,6 +52,27 @@
 						</tr>
 					</c:forEach>
 				</c:if>
+			</c:if>
+			<c:if test="${BS ne null}">
+				<c:if test="${BS eq null or empty BS}">
+					<!-- 게시판이 비어있을때 표시하는 내용 -->
+					<tr>
+						<td colspan="4"><b>데이터가 없습니다.</b></td>
+					</tr>
+				</c:if>
+				<c:if test="${BS ne null}">
+					<c:forEach var="i" items="${BS}">
+						<tr onclick="article_link('${i.num}','${tn}')">
+							<td width="5%">${i.num}</td>
+							<td width="65%"><a href="#">${i.subject}</a></td>
+							<td width="10%"><fmt:formatDate value="${i.date}"
+									pattern="yyyy-MM-dd" /></td>
+							<td width="10%">${i.hits}</td>
+							<td width="10%">${i.likes}</td>
+						</tr>
+					</c:forEach>
+				</c:if>
+			</c:if>
 			</tbody>
 		</table>
 
@@ -81,7 +103,7 @@
 			</form>
 			<!-- 키워드검색input -->
 			<nav class="navbar">
-				<form class="navbar-form" method="get" action="keywordSearch.do">
+				<form class="navbar-form" action="keywordSearch.do">
 					<div class="form-group">
 						<div class="input-group-sm">
 							<input name="keyword" type="text" class="form-control form-control-sm"> 

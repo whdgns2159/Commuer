@@ -277,7 +277,7 @@ public class BoardDAO {
 			NS=NSChoice(tn);
 			
 			ses=fac.openSession();
-			int n=ses.selectOne(NS+".keywordCount", keyword);
+			int n=ses.selectOne(NS+".getKeywordCount", keyword);
 			
 			return n;
 			

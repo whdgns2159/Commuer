@@ -55,10 +55,18 @@
 					<a href="memos" class="btn btn-danger"> <i
 						class="fa fa-align-justify fa-fw fa-lg"></i> List
 					</a>
+					<button type="button" onclick="fileDown('${memo.filename}')" class="btn btn-success">
+						<i class="fa fa-edit fa-fw fa-lg"></i> Download
+					</button>
 				</form>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function fileDown(fname){
+			location.href="../fileDown?fname="+encodeURIComponent(fname);
+		}
+	</script>
 </body>
 
 </html>

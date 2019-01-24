@@ -46,7 +46,10 @@ public class KeySearchAction extends AbstractAction {
 		
 		List<BoardVO> searchResult=dao.keywordSearch(tn, keyword, start, end);
 		
-		req.setAttribute("Ba", searchResult);
+		req.setAttribute("BS", searchResult);
+		
+		this.setViewPage("board.do");
+		this.setRedirect(false);
 
 	}
 
