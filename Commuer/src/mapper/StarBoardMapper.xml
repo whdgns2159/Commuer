@@ -22,12 +22,15 @@
  		<result property="content" column="content"/>
  		<result property="wdate" column="wdate"/>
  	</resultMap>
- 	
- 	
- 	<select id="boardContent" resultMap="boardMap">
- 		select star_b_num, subject, content, id, hits, likes, wdate  
- 		from star_board order by 1 desc 
+ <!-- 게시판의 글목록을 불러오는 sql문 -->
+ 	<select id="boardContent" parameterType="Map" resultMap="boardMap">
+ 		<!-- select star_b_num, subject, content, id, hits, likes, wdate  
+ 		from star_board order by 1 desc  -->
+ 		select *  from(select rownum rn, a.* 
+ 							 from(select star_b_num, subject, content, id, hits, likes, wdate from star_board order by star_b_num desc) a )
+ 					where rn between #{start} and #{end}
  	</select>
+ 	
  	<!-- 선택한 게시글의 내용을 불러오는 sql문 -->
  	<select id="getArticle" parameterType="_int" resultMap="boardMap">
  		select star_b_num, subject, content, id, hits, likes, wdate  
@@ -45,6 +48,34 @@
  			sysdate
  		)
  	</insert>
+ 	<!-- 게시글 삭제하는 sql문 -->
+ 	<delete id="delArticle">
+ 		delete from star_board where star_b_num=#{num}
+ 	</delete>
+ 	<!-- 조회수 증가 -->
+ 	<update id="increaseHits" parameterType="_int">
+ 		update star_board set hits= hits+1 where star_b_num=#{num}
+ 	</update>
+ 	<!-- 총 게시글수 가져오기 -->
+ 	<select id="articleCount" resultType="_int">
+ 		select count(star_b_num) cnt from star_board
+ 	</select>
+ 	<!-- 검색어 처리 -->
+ 	<select id="keywordSearch" parameterType="Map" resultMap="boardMap">
+ 		select *  from(select rownum rn, a.* 
+						 from(select star_b_num, subject, content, id, hits, likes, wdate 
+							 from star_board 
+							 where subject like '%'||#{keyword}||'%' 
+							 or content like '%'||#{keyword}||'%' 
+							 order by star_b_num desc)  a
+						 )
+ 					where rn between #{start} and #{end}
+ 	</select>
+ 	
+ 	<select id="getKeywordCount" parameterType="string" resultType="int">
+ 		select count(star_b_num) cnt from star_board where subject like '%'||#{keyword}||'%'
+ 	</select>
+ 	<!-- =============================================== -->
  	<!-- 리플을 작성하는 sql문 -->
  	<insert id="subReply" parameterType="reply" >
  		insert into star_board_reply values(
@@ -63,12 +94,5 @@
  	<select id="totalReply" parameterType="_int" resultType="_int">
  		select count(star_b_num) from star_board_reply where star_b_num = #{num}
  	</select>
- 	<!-- 조회수 증가 -->
- 	<update id="increaseHits" parameterType="_int">
- 		update star_board set hits= hits+1 where star_b_num=#{num}
- 	</update>
- 	<!-- 총 게시글수 가져오기 -->
- 	<select id="articleCount" resultType="_int">
- 		select count(star_b_num) cnt from star_board
- 	</select>
+ 	
  </mapper>

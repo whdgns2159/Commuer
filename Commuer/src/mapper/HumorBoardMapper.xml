@@ -22,9 +22,10 @@
  		<result property="content" column="content"/>
  		<result property="wdate" column="wdate"/>
  	</resultMap>
- 	
- 	<!-- 게시판의 글 목록을 불러오는 sql문 -->
- 	<select id="boardContent" resultMap="boardMap">
+ <!-- 게시판의 글목록을 불러오는 sql문 -->
+ 	<select id="boardContent" parameterType="Map" resultMap="boardMap">
+ 		<!-- select humor_b_num, subject, content, id, hits, likes, wdate  
+ 		from humor_board order by 1 desc  -->
  		select *  from(select rownum rn, a.* 
  							 from(select humor_b_num, subject, content, id, hits, likes, wdate from humor_board order by humor_b_num desc) a )
  					where rn between #{start} and #{end}
@@ -47,6 +48,34 @@
  			sysdate
  		)
  	</insert>
+ 	<!-- 게시글 삭제하는 sql문 -->
+ 	<delete id="delArticle">
+ 		delete from humor_board where humor_b_num=#{num}
+ 	</delete>
+ 	<!-- 조회수 증가 -->
+ 	<update id="increaseHits" parameterType="_int">
+ 		update humor_board set hits= hits+1 where humor_b_num=#{num}
+ 	</update>
+ 	<!-- 총 게시글수 가져오기 -->
+ 	<select id="articleCount" resultType="_int">
+ 		select count(humor_b_num) cnt from humor_board
+ 	</select>
+ 	<!-- 검색어 처리 -->
+ 	<select id="keywordSearch" parameterType="Map" resultMap="boardMap">
+ 		select *  from(select rownum rn, a.* 
+						 from(select humor_b_num, subject, content, id, hits, likes, wdate 
+							 from humor_board 
+							 where subject like '%'||#{keyword}||'%' 
+							 or content like '%'||#{keyword}||'%' 
+							 order by humor_b_num desc)  a
+						 )
+ 					where rn between #{start} and #{end}
+ 	</select>
+ 	
+ 	<select id="getKeywordCount" parameterType="string" resultType="int">
+ 		select count(humor_b_num) cnt from humor_board where subject like '%'||#{keyword}||'%'
+ 	</select>
+ 	<!-- =============================================== -->
  	<!-- 리플을 작성하는 sql문 -->
  	<insert id="subReply" parameterType="reply" >
  		insert into humor_board_reply values(
@@ -65,12 +94,5 @@
  	<select id="totalReply" parameterType="_int" resultType="_int">
  		select count(humor_b_num) from humor_board_reply where humor_b_num = #{num}
  	</select>
- 	<!-- 조회수 증가 -->
- 	<update id="increaseHits" parameterType="_int">
- 		update humor_board set hits= hits+1 where humor_b_num=#{num}
- 	</update>
- 	<!-- 총 게시글수 가져오기 -->
- 	<select id="articleCount" resultType="_int">
- 		select count(humor_b_num) cnt from humor_board
- 	</select>
+ 	
  </mapper>
