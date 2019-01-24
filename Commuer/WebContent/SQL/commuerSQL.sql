@@ -14,7 +14,7 @@ drop sequence free_likes_seq;
 create table free_board(
   free_b_num number not null, --글번호
   subject varchar2(250) not null, --제목
-  content long not null, --글내용
+  content varchar2(4000) not null, --글내용
   id varchar2(20) not null, --작성자
   hits number(6) default 0, --조회수
   likes number(6) default 0, --공감수
@@ -36,7 +36,7 @@ create table free_board_reply(
   free_b_r_num number not null, --댓글번호
   free_b_num number not null, --참조할 게시글번호
   id varchar2(20) not null, --댓글작성자
-  content long not null,--댓글내용
+  content varchar2(4000) not null,--댓글내용
   wdate date, --작성시간
   constraint free_b_r_num_pk primary key (free_b_r_num),
   constraint free_b_num_fk foreign key (free_b_num) 
@@ -59,7 +59,7 @@ drop sequence humor_likes_seq;
 create table humor_board(
   humor_b_num number not null, --글번호
   subject varchar2(250) not null, --제목
-  content long not null, --글내용
+  content varchar2(4000) not null, --글내용
   id varchar2(20) not null, --작성자
   hits number(6) default 0, --조회수
   likes number(6) default 0, --공감수
@@ -81,7 +81,7 @@ create table humor_board_reply(
   humor_b_r_num number not null,--댓글번호
   humor_b_num number not null, --참조할 게시글번호
   id varchar2(20) not null, --댓글작성자
-  content long not null,--댓글내용
+  content varchar2(4000) not null,--댓글내용
   wdate date, --작성시간
   constraint humor_b_r_num_pk primary key (humor_b_r_num),
   constraint humor_b_num_fk foreign key (humor_b_num) 
@@ -104,7 +104,7 @@ drop sequence music_likes_seq;
 create table music_board(
   music_b_num number not null, --글번호
   subject varchar2(250) not null, --제목
-  content long not null, --글내용
+  content varchar2(4000) not null, --글내용
   id varchar2(20) not null, --작성자
   hits number(6) default 0, --조회수
   likes number(6) default 0, --공감수
@@ -126,7 +126,7 @@ create table music_board_reply(
   music_b_r_num number not null,--댓글번호
   music_b_num number not null, --참조할 게시글번호
   id varchar2(20) not null, --댓글작성자
-  content long not null,--댓글내용
+  content varchar2(4000) not null,--댓글내용
   wdate date, --작성시간
   constraint music_b_r_num_pk primary key (music_b_r_num),
   constraint music_b_num_fk foreign key (music_b_num) 
@@ -150,7 +150,7 @@ drop sequence star_likes_seq;
 create table star_board(
   star_b_num number not null, --글번호
   subject varchar2(250) not null, --제목
-  content long not null, --글내용
+  content varchar2(4000) not null, --글내용
   id varchar2(20) not null, --작성자
   hits number(6) default 0, --조회수
   likes number(6) default 0, --공감수
@@ -172,7 +172,7 @@ create table star_board_reply(
   star_b_r_num number not null,--댓글번호
   star_b_num number not null, --참조할 게시글번호
   id varchar2(20) not null, --댓글작성자
-  content long not null,--댓글내용
+  content varchar2(4000) not null,--댓글내용
   wdate date, --작성시간
   constraint star_b_r_num_pk primary key (star_b_r_num),
   constraint star_b_num_fk foreign key (star_b_num) 
@@ -180,6 +180,32 @@ create table star_board_reply(
 );
 
 drop table star_board_reply;
+
+--------------------------------------------------------------------------------------------
+--공지사항게시판 인덱스 시퀀스--
+create SEQUENCE info_board_seq 
+increment by 1 START WITH 1 nocache;
+
+drop sequence info_board_seq;
+--공지사항게시판 공감수 시퀀스--
+create sequence info_likes_seq
+increment by 1 start with 1 nocache;
+
+drop sequence info_likes_seq;
+--공지사항게시판 테이블 생성--
+create table info_board(
+  info_b_num number not null, --글번호
+  subject varchar2(250) not null, --제목
+  content varchar2(4000) not null, --글내용
+  id varchar2(20) not null, --작성자
+  hits number(6) default 0, --조회수
+  likes number(6) default 0, --공감수
+  wdate date, --작성일
+  constraint info_b_num_pk primary key (info_b_num), --기본키 (글번호)
+  constraint info_b_fk foreign key (id)  references user_Info(id) -- 참조키 (id) 
+);
+
+drop table info_board;
 
 
 --------------------------------------------------------------------------------------------
@@ -203,6 +229,19 @@ create table user_Info(
   reg_date date not null,
   constraint user_id_pk primary key (id)
 );
+
+drop table admin_Info;
+
+create table admin_Info(
+  idx number(6) not null,
+  id varchar2(20) not null,
+  pwd varchar2(30) not null, 
+  nickname varchar2(30) not null,
+  email varchar2(120) not null,
+  tel varchar2(11) not null,
+  reg_date date not null,
+  constraint admin_id_pk primary key (id)
+);
 --북마크 테이블-----------------------------------------------------------------------
 create table user_bookmark (
   
@@ -212,4 +251,5 @@ create table user_bookmark (
 );
 
 drop table user_bookmark;
+
 

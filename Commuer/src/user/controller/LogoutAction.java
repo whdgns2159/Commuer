@@ -12,8 +12,9 @@ public class LogoutAction extends AbstractAction {
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 		HttpSession ses=req.getSession();
-		ses.invalidate();
-	
+		if(ses!=null) {
+			ses.invalidate();
+		}
 		this.setViewPage("main.do");
 		this.setRedirect(false);
 	}
