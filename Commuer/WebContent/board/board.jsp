@@ -7,7 +7,8 @@
 
 <div class="container">
 	<div>
-		<h1>${tn}
+		<h2>
+			${tName}
 			<!-- 즐겨찾기(북마크) 버튼 구현 -->
 			<c:if test="${loginUser ne null }">
 				<c:if test="${BM eq null}">
@@ -19,7 +20,7 @@
 						width="20px" height="20px"></a>
 				</c:if>
 			</c:if>
-		</h1>
+		</h2>
 	</div>
 	<div class="table-responsive">
 		<table class="table">
@@ -44,9 +45,9 @@
 					<c:forEach var="i" items="${BT}">
 						<tr onclick="article_link('${i.num}','${tn}')">
 							<td width="5%">${i.num}</td>
-							<td width="65%"><a href="#">${i.subject}</a></td>
-							<td width="10%"><fmt:formatDate value="${i.date}"
-									pattern="yyyy-MM-dd" /></td>
+							<td width="65%"><a href="#"><c:out value="${i.subject}"></c:out></a></td>
+							<td width="10%">
+							<fmt:formatDate value="${i.date}" pattern="yyyy-MM-dd"/></td>
 							<td width="10%">${i.hits}</td>
 							<td width="10%">${i.likes}</td>
 						</tr>

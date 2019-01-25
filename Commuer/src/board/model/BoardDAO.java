@@ -96,6 +96,19 @@ public class BoardDAO {
 			if(ses!=null) ses.close();
 		}
 	}
+	/**게시물 수정하기*/
+	public int editArticle(String tn, Map<String, String> map){
+		try {
+			NS=NSChoice(tn);
+			
+			ses=fac.openSession(true);
+			int n=ses.update(NS+".editArticle", map);
+			
+			return n;
+		} finally {
+			if(ses!=null) ses.close();
+		}
+	}
 	
 	/**선택한 게시글 불러오기*/
 	public BoardVO getArticle(String tn, int num) { //게시판번호와 해당게시판의 게시글번호를 받아온다.
@@ -104,7 +117,7 @@ public class BoardDAO {
 			
 			ses=fac.openSession();
 			BoardVO vo=ses.selectOne(NS+".getArticle", num);
-			//System.out.println(vo);
+		
 			return vo;
 		}finally {
 			if(ses!=null) ses.close();

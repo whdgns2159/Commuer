@@ -37,6 +37,10 @@
  		select free_b_num, subject, content, id, hits, likes, wdate  
  		from free_board where free_b_num=#{num}
  	</select>
+ 	<!-- 게시글 수정하는 sql문 -->
+ 	<update id="editArticle" parameterType="Map">
+ 		update free_board set subject=#{sub}, content=#{cont} where free_b_num =#{num}
+ 	</update>
  	<!-- 게시판에 글을 쓰는 sql문 -->
  	<insert id="articleWrite" parameterType="board">
  		insert into free_board values(

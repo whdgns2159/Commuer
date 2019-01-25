@@ -1,5 +1,6 @@
 package board.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,8 +23,7 @@ public class BoardAction extends AbstractAction {
 		
 		BoardDAO dao=new BoardDAO();
 		
-		
-		
+	
 		/**페이징 처리하기*/
 		
 		String cpStr=req.getParameter("cpage");
@@ -49,8 +49,18 @@ public class BoardAction extends AbstractAction {
 		int end=cpage*pageSize;
 		int start=end -(pageSize-1);
 		//------------------------------------------------------------------
-
+		
+		/**게시물 가져오기*/
 		List<BoardVO> arr=dao.getSelectedBoard(tnStr, start, end);
+		
+		/**현재시간과 게시물 작성시간 비교해서 
+		 * 오늘작성한 글이라면 시간으로표시하기 (미완성)*/
+		long currTimeMillis=System.currentTimeMillis();
+		SimpleDateFormat dateForm=new SimpleDateFormat("yyyy-MM-dd");
+		String currtime=dateForm.format(currTimeMillis); //현재시간
+		
+		System.out.println(currtime);
+		
 		
 		/**북마크 여부 가져오기*/
 		HttpSession ses=req.getSession();
@@ -74,8 +84,25 @@ public class BoardAction extends AbstractAction {
 		}
 		//-----------------------------------------------------------------
 		
+		/**게시판이름 표시해주기*/
+		String tName="";
+		switch(tn) {
+		case 1:tName="인기";
+		break;
+		case 2:tName="자유";
+		break;
+		case 3:tName="유머";
+		break;
+		case 4:tName="음악";
+		break;
+		case 5:tName="연예";
+		break;
+		}
+		//-----------------------------------------------------------------
+		
 		req.setAttribute("BT", arr);
 		req.setAttribute("tn", tn);
+		req.setAttribute("tName", tName);
 		
 		req.setAttribute("totalCount", totalCount);
 		req.setAttribute("pageCount", pageCount);

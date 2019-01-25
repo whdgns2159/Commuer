@@ -12,19 +12,14 @@ public class MainAction extends AbstractAction {
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 		
-		
 		HttpSession ses=req.getSession();
-		if(ses!=null) {
-			UserVO userinfo=new UserVO();
-			userinfo=(UserVO)ses.getAttribute("loginUser");
-			String admin="aa";
-			
-			if(userinfo.getId().equals(admin)) {
+		UserVO userinfo=new UserVO();
+		userinfo=(UserVO)ses.getAttribute("loginUser");
+		if(userinfo!=null) {
+			if(userinfo.getId().equals("aa")) {
 				req.setAttribute("loginUser", userinfo);
 			}
-			
 		}
-		
 		this.setViewPage("main.jsp");
 		this.setRedirect(false);
 	}

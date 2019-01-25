@@ -37,7 +37,7 @@
 		<!-- 게시글의 id와 세션의 id가 갖다면 -->
 		<c:if test="${GA.id eq userid }">
 			<div class="col-md-2" >
-				<a href="#" class="btn btn-info btn-sm" style="color: white" >글수정</a>
+				<a href="editArticle.do?tn=${tn}&num=${num}" class="btn btn-info btn-sm" style="color: white" >글수정</a>
 				<a href="delArticle.do?tn=${tn}&num=${num}&id=${GA.id}" 
 				class="btn btn-danger btn-sm" style="color: white" >글삭제</a>
 			</div>

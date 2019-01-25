@@ -3,17 +3,18 @@
 <jsp:include page="/top.jsp"/>
 <jsp:include page="/boardList.jsp"/>
 
-    <div class="container" style="margin-top:15px; width:1000px">
-    	<form name="subArticleF" action="subArticle.do" method="get">
-    		<input name="subject" id="subject" placeholder="제목" type="text" class="art_title form-control">
-    		<span class="placeholder_cont" >내용</span>
-    		<div class="art_content" contenteditable="true" id="div_content"></div>
+   <div class="container" style="margin-top:15px; width:1000px">
+    	<form name="subArticleF" action="editEndArticle.do" method="get">
+    		<input name="subject" id="subject" placeholder="제목" type="text" class="art_title form-control" value="${article.subject}">
+    		<span class="placeholder_cont" ></span>
+    		<div class="art_content" contenteditable="true" id="div_content" >${article.content}</div>
     		<div class="art_result">
-    			<a href="#" onclick="subArticle()" class="btn btn-primary">등록</a>
+    			<a href="#" onclick="subArticle()" class="btn btn-info">수정</a>
     			<button type="button" class="btn btn-secondary" onclick="javascript:historty.back()">취소</button>
     		</div>
     		<textarea name="content" id="content" style="display: none"></textarea>
     		<input type="hidden" id="tn" name="tn" value="${tn}"/>
+    		<input type="hidden" id="num" name="num" value="${article.num}"/>
     	</form>
     </div>
     
