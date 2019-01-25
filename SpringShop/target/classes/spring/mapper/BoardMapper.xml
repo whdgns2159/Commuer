@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- context-datasource.xml에 mybatis-spring:scan에 등록한 
+  패키지의 Mapper인터페이스 명과 
+  네임스페이스를 반드시 동일하게 주어야함 -->
+<mapper namespace="com.tis.mapper.BoardMapper">    
+	<!-- id가 인터페이스의 메소드명과 동일해야 함  -->
+	<select id="tabCount" resultType="int">
+		select count(*) from tab
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
