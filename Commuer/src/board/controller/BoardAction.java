@@ -55,11 +55,6 @@ public class BoardAction extends AbstractAction {
 		
 		/**현재시간과 게시물 작성시간 비교해서 
 		 * 오늘작성한 글이라면 시간으로표시하기 (미완성)*/
-		long currTimeMillis=System.currentTimeMillis();
-		SimpleDateFormat dateForm=new SimpleDateFormat("yyyy-MM-dd");
-		String currtime=dateForm.format(currTimeMillis); //현재시간
-		
-		System.out.println(currtime);
 		
 		
 		/**북마크 여부 가져오기*/
