@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+body{
+	font-family:sans-serif, verdana;
+	font-size:16px;
+	color:navy;
+}
+#wrap{
+	width:1024px;
+	height: auto;
+	margin: 0 auto;/*상하:0, 좌우:자동 */
+}
+img{
+	border:0px;
+}
+.clear{
+	clear:both;
+	/*불필요하게 교차된 박스를 분리해주는 역할
+	float:left 등을 해제해줌  */
+}
+/*헤더-----------------------------  */
+header{
+	margin-top: 10px;/*바깥 탑여백: 10px  */
+	padding:20px;/*안쪽 여백 */
+	border-radius: 5px;
+	border: 1px solid silver;	
+}
+/* 네비게이션-------------------------- */
+nav{
+	padding:5px;
+	margin:5px 0px;/*상하:5 좌우:0  */
+	height:30px;
+	background-color:rgba(225,232,240,1);
+	border-radius:5px;
+}
+nav ul{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+nav ul li{
+	float:left;
+	padding:0 5px 0 0;
+}
+nav ul li a{
+	text-decoration:none;
+	padding: 2px 20px 3px 20px;
+	color: rgba(51,51,51,1);
+	display:block;/*블럭으로 지정하여 공간 확보 */
+}
+nav ul li a:hover{
+	background-color:rgba(102,153,255,1);
+	color:rgba(255,255,255,1);
+	border-radius:5px;
+}
+/*article----------------------  */
+article{
+	border:1px solid rgba(225,225,204,1);
+	border-radius:5px;
+	width:80%;
+	height:600px;/*auto*/
+	float:left;
+	margin:5px 0;
+	padding:15px;
+	overflow:auto;
+}
+article section{
+	width:45%;
+	background-color:rgba(225,225,204,1);
+	padding:10px;
+	margin:3px;
+	float:left;
+}
+/*aside-------------------------  */
+aside{
+	float:right;
+	width:20%;
+	height:600px;
+	border:1px solid rgba(225,225,204,1);
+	border-radius:5px;
+	margin:5px 0;
+	padding:13px;	
+}
+aside nav{
+	border:none;
+	background:none;
+}
+aside nav ul{
+	list-style-type:none;
+}
+aside nav ul li{
+	padding:0,5px;
+}
+aside nav ul li a{
+	width:170px;
+	padding:5px 0;
+}
+aside nav ul li a:hover{
+	color:red;
+	font-weight:bold;
+	background-color: transparent;/*배경을 투명하게  */
+}
+
+/*footer-------------------------  */
+footer{
+	background-color: rgba(232,255,244,1);
+	border:1px solid rgba(225,225,204,1);
+	border-radius: 5px;
+	margin:5px;
+	padding:10px 20px;
+	font-size:13px;
+}
+/*테이블 정의---------------------  */
+table{
+	border-collapse:collapse;
+}
+table th{
+	background-color:#ccffee;	
+}
+table td{
+	padding-left:7px;
+	text-align:left;
+	height:28px;
+	padding-top:3px;
+	padding-bottom:3px;
+}
+
+table.cssfrm th{
+	text-align:left;
+	padding-left:20px;
+	background-color:#f5eedd;
+}
+.box{
+	border:1px solid #808040;
+	padding:4px;
+}
+.outline{
+	border-top: 4px double navy;
+	border-bottom: 4px double navy;
+}
+.m1{
+	background-color:#c3ed8f;
+}
+.m2{
+	background-color:#ddccaa;
+}
+.m3{
+	width:50%;
+	padding:4px;
+}
+span.m4{
+	color:blue;
+	font-size:14px;
+}
+.m5{
+	width:70%;
+	padding:4px;
+	margin-bottom:4px;
+}
+
+/* 표준 링크 스타일------------------ */
+a{
+	text-decoration:none;
+}
+a:link{
+	color:#000000;
+}
+a:visited{
+	color:green;
+}
+a:hover{
+	color:maroon;
+}
+a:active {
+	color:red;
+}
+
+
+
+
+
+
+
+

@@ -23,7 +23,7 @@
 			</td>
 			<td width="20%">작성일</td>
 			<td width="30%">
-				<fmt:formatDate value="2019-03-01" pattern="yyyy-MM-dd hh:mm"/>
+				a
 			</td>
 		</tr>
 		<tr>
@@ -59,7 +59,7 @@
 				
 		<c:if test="${fn:endsWith(board.filename,'.jpg') or fn:endsWith(board.filename,'.png') }">
 					<img width="80px" class="img img-thumbnail"
-					 src="boardUpload/a">
+					 src="../Upload/a">
 				</c:if>	
 						
 				
@@ -70,8 +70,8 @@
 
 		<tr>
 			<td colspan="4" align=center>
-			<a href="board">글쓰기</a>|
-			<a href="boardList">목록</a>| <a
+			<a href="input">글쓰기</a>|
+			<a href="list">목록</a>| <a
 				href="#" onclick="go('a',1)">편집</a>| <a href="#"
 				onclick="go('a',2)">삭제</a>| <a
 				href="javascript:goRe()">답변</a></td>

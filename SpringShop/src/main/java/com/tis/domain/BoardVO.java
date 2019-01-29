@@ -22,4 +22,7 @@ public class BoardVO {
 	private int refer;
 	private int lev;
 	private int sunbun;
+	
+	private int isFile;//첨부파일이 있으면1, 없으면 0값을 갖는다.
+	private int newImg;//24시간 이내 쓴 글
 }

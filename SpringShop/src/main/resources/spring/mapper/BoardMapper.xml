@@ -2,14 +2,45 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <!-- context-datasource.xml에 mybatis-spring:scan에 등록한 
-  패키지의 Mapper인터페이스 명과 
-  네임스페이스를 반드시 동일하게 주어야함 -->
-<mapper namespace="com.tis.mapper.BoardMapper">    
-	<!-- id가 인터페이스의 메소드명과 동일해야 함  -->
+<!--  context-datasource.xml에 mybatis-spring:scan에 등록된
+패키지의 Mapper인터페이스명과 
+네임스페이스를 반드시 동일하게 주어야 함-->
+<mapper namespace="com.tis.mapper.BoardMapper">
+	<!--  id가 인터페이스의 메소드명과 동일해야 함-->
 	<select id="tabCount" resultType="int">
 		select count(*) from tab
 	</select>
+	<!--  refer컬럼(글그룹번호)은  원본글의 글번호(idx)와 동일하게
+	     줄 예정-->
+	<insert id="insertBoard" parameterType="com.tis.domain.BoardVO">
+		<selectKey keyProperty="idx" resultType="int" order="BEFORE">
+			select board_seq.nextval from dual
+		</selectKey>
+		insert into board values(#{idx},#{name},#{pwd},
+			#{subject},#{content:VARCHAR}, sysdate,
+			#{readnum},#{filename:VARCHAR},
+			#{originFilename:VARCHAR},
+			#{filesize:NUMERIC},#{idx},#{lev},#{sunbun})		
+	</insert>
+	<!-- 게시목록에서 가져올 컬럼명들을 기술함 -->
+	<sql id="sel_column">
+	board.*, decode(originFilename, null, 0, 1) isFile,
+	sysdate - to_date(to_char(wdate, 'yyyy-mm-dd')) newImg
+	</sql>
+	
+	<select id="selectBoardAll" parameterType="map"
+	 resultType="com.tis.domain.BoardVO">
+	<!--  	select * from board order by idx desc -->
+	select * from(
+		select rownum rn, a.* from 
+			(select <include refid="sel_column"/> from board order by idx desc) a
+	) <![CDATA[where rn >#{start} and rn <=#{end}]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(idx) from board
+	</select>
+	
 </mapper>
 
 

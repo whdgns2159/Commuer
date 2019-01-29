@@ -23,32 +23,28 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int insertBoard(BoardVO board) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bMapper.insertBoard(board);
 	}
 
 	@Override
 	public List<BoardVO> selectBoardAll(Map<String, Integer> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return bMapper.selectBoardAll(map);
 	}
 
 	@Override
 	public List<BoardVO> selectBoardAll(PagingVO paging) {
-		// TODO Auto-generated method stub
-		return null;
+		return bMapper.selectBoardAll(paging);
 	}
 
 	@Override
 	public List<BoardVO> findBoard(PagingVO paging) {
 		// TODO Auto-generated method stub
-		return null;
+		return bMapper.findBoard(paging);
 	}
 
 	@Override
 	public int getTotalCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return bMapper.getTotalCount();
 	}
 
 	@Override

@@ -23,19 +23,14 @@
 		}
 		sf.submit();
 	}
-
-
 </script>
-
-
-
-
+<%-- ${boardList} --%>
 <div class="section">
 <div class="row">
 	<div align="center" id="bbs" class="col-md-8 col-md-offset-2">
 	<h1>Spring Board</h1>
 	<p>
-		<a href="<%=ctx%>/board/write#bbs">글쓰기</a>| <a
+		<a href="<%=ctx%>/board/input#bbs">글쓰기</a>| <a
 			href="<%=ctx%>/board/list#bbs">글목록</a>
 		<p>
 		<div class="section">
@@ -61,12 +56,14 @@
 			<!-- 검색 폼 끝---------------------- -->
 			
 			<!-- 페이지 사이즈 폼 시작-------------- -->
-			<form name="pf" id="pf" action="boardList">
+			<form name="pf" id="pf" action="list">
 				
 				<div class="col-md-2">
 				<select name="pageSize" class="form-control" onchange="submit()">
 					<option value="">:::페이지 사이즈:::</option>
-					
+					<c:forEach var="ps" begin="5" end="20" step="5">
+						<option value="${ps}">페이지 사이즈 ${ps}개</option>
+					</c:forEach>
 				</select>
 				</div>
 			</form>
@@ -74,48 +71,69 @@
 		</div>
 		<table class="table table-condensed table-striped">
 			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>글쓴이</th>
-				<th>날짜</th>
-				<th>조회수</th>
+				<th width="10%">글번호</th>
+				<th width="40%">제목</th>
+				<th width="20%">글쓴이</th>
+				<th width="20%">날짜</th>
+				<th width="10%">조회수</th>
 			</tr>
 			<!-- ---------------------------- -->
-			
+				<c:if test="${boardList eq null or empty boardList }">
 				<tr>
 					<td colspan="5"><b>게시글이 없습니다.</b></td>
 				</tr>
-			
+				</c:if>
+			<c:if test="${boardList ne null and not empty boardList }">
+				<c:forEach var="board" items="${boardList}">
 				<tr>
 					<td>
-						idx
+						<c:out value="${board.idx}"/>
 					</td>
 					<td align="left">
-					
-					<a href="boardView?idx=${board.idx}">					
-					subject						
+					<a href="view?idx=${board.idx}">					
+						<c:out value="${board.subject}"/>
+						&nbsp;&nbsp;&nbsp;
+						<c:if test="${board.isFile>0 }">
+							<img alt="" src="../images/file.PNG">
+						</c:if>
+						<!-- 24시간 이내에 작성한 글 이다. -->
+						<c:if test="${board.newImg<1 }">
+							<span class="label label-info">new</span>
+						</c:if>											
 					</a></td>
 					<td>
-					name
+						<c:out value="${board.name}"/>
 					</td>
 					<td>	
-						wdate
+						<fmt:formatDate
+						 value="${board.wdate}"
+						 pattern="yyyy-MM-dd"/>	
+						
 					</td>
 					<td>
-						readnum
+						<c:out value="${board.readnum}"/>
 					</td>
 				</tr>
+				</c:forEach>
+				</c:if>
 			<!-- ----------------------------- -->
 			<tr>
 				<td colspan="3" class="text-center">
-					
-					navi					 
+				  <ul class="pagination">	
+					<c:forEach var="i" begin="1" end="${pageCount}">
+						<li   
+							<c:if test="${i eq cpage }">class="active"</c:if>
+						><a href="list?cpage=${i}&pageSize=${pageSize}">${i}</a></li>	
+					</c:forEach>
+				 </ul>	
+									 
 				</td>
 				<td colspan="2">총게시물수:
-				<span class="text-danger" style="font-weight:bold">a 개</span> 
+				<span class="text-danger" style="font-weight:bold">
+				${totalCount} 개</span> 
 				<br>
-				 <span  class="text-danger" style="font-weight:bold" >a</span>
-				 /a pages
+				 <span  class="text-danger" style="font-weight:bold" >${cpage }</span>
+				 /${pageCount} pages
 				</td>
 			</tr>
 			
