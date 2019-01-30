@@ -27,10 +27,17 @@
 	board.*, decode(originFilename, null, 0, 1) isFile,
 	sysdate - to_date(to_char(wdate, 'yyyy-mm-dd')) newImg
 	</sql>
+	<!-- PagingVO로 페이징 처리하여 게시목록 가져오기 -->
+	<select id="selectBoardAllPaging" parameterType="com.tis.domain.PagingVO" resultType="Board">
+		select * from(
+		select rownum rn, a.* from 
+			(select <include refid="sel_column"/> from board order by idx desc) a
+	) <![CDATA[where rn >#{start} and rn <=#{end}]]>
+	</select>
 	
+	<!-- Map으로 페이징 처리하여 게시목록 가져오기 -->
 	<select id="selectBoardAll" parameterType="map"
 	 resultType="com.tis.domain.BoardVO">
-	<!--  	select * from board order by idx desc -->
 	select * from(
 		select rownum rn, a.* from 
 			(select <include refid="sel_column"/> from board order by idx desc) a
@@ -40,7 +47,16 @@
 	<select id="getTotalCount" resultType="int">
 		select count(idx) from board
 	</select>
-	
+	<!-- 글 내용볼때 조회수 증가-->
+	<update id="updateReadnum" parameterType="int">
+		update board set readnum = readnum +1 where idx=#{idx}
+	</update>
+	<!-- 게시글 가져오기 -->
+	<select id="selectBoardByIdx" resultType="Board">
+		select 
+		<include refid="sel_column"/>
+		from board where idx=#{idx}
+	</select>
 </mapper>
 
 

@@ -12,57 +12,57 @@
 		<h1>글 내용 보기</h1>
 	</hgroup>
 	<br>
-	
+	<c:if test="${board eq null }">
 		<h3>존재하지 않는 글입니다.</h3>
+	</c:if>
 	
+	<c:if test="${board ne null }">
 	<table class="table table-bordered">
 		<tr>
 			<td width="20%">글번호</td>
 			<td width="30%">
-				<c:out value="a"/>
+				<c:out value="${board.idx }"/>
 			</td>
 			<td width="20%">작성일</td>
 			<td width="30%">
-				a
+				<fmt:formatDate value="${board.wdate }" pattern="yyyy-MM-dd hh:mm:ss"/>
 			</td>
 		</tr>
 		<tr>
 			<td width="20%">글쓴이</td>
 			<td width="30%">
-				<c:out value="a"/>
+				<c:out value="${board.name }"/>
 			</td>
 			<td width="20%">조회수</td>
 			<td width="30%">
-				<c:out value="a"/>
+				<c:out value="${board.readnum }"/>
 			</td>
 		</tr>
 
 		<tr>
 			<td width="20%">제목</td>
 			<td colspan="3" align="left">
-				<c:out value="a"/>
+				<c:out value="${board.subject}"/>
 			</td>
 		</tr>
 		<tr height="60">
 			<td width="20%">글내용</td>
 			<td colspan="3" align="left">
-				<pre><c:out value="a"/></pre>
+				<pre><c:out value="${board.content }"/></pre>
 			</td>
 		</tr>
 		<tr>
 			<td width="20%">첨부파일</td>
 			<td colspan="3">
-				<a href="<%=request.getContextPath()%>/fileDown?filename=a&origin=${board.originFilename}">
-				<c:out value="a"/>
-				</a> [ <c:out value="a"/>bytes]  
+				<a onclick="fDown()">
+				<c:out value="${board.originFilename }"/>
+				</a> [ <c:out value="${board.filesize }"/>bytes]  
 				
-				
-		<c:if test="${fn:endsWith(board.filename,'.jpg') or fn:endsWith(board.filename,'.png') }">
+		<c:set var="fname" value="${fn:toLowerCase(board.filename) }"></c:set>
+		<c:if test="${fn:endsWith(fname,'.jpg') or fn:endsWith(fname,'.png') }">
 					<img width="80px" class="img img-thumbnail"
-					 src="../Upload/a">
+					 src="../Upload/${board.filename }">
 				</c:if>	
-						
-				
 				</td>
 		</tr>
 
@@ -77,7 +77,7 @@
 				href="javascript:goRe()">답변</a></td>
 		</tr>
 	</table>
-	
+	</c:if>
 	
 	<!--편집 또는 삭제 관련 form 시작----------------  -->
 	<form name="vf">
@@ -91,10 +91,18 @@
 		<input type="hidden" name="idx" value="<c:out value="a"/>">
 		<input type="hidden" name="subject" value="<c:out value="a"/>">
 	</form>
+	<!-- 첨부파일 다운로드 form -->
+	<form action="fileDown" method="POST" name="ff">
+		<input type="hidden" name="filename" value="${board.filename}">
+		<input type="hidden" name="origin" value="${board.originFilename}">
+	</form>
 		</div>
 	</div>	
 </div>
 <script type="text/javascript">
+	var fDown=function(){
+		ff.submit();
+	}
 	var goRe=function(){
 		reF.submit();
 	}

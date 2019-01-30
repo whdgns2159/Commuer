@@ -32,13 +32,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> selectBoardAll(PagingVO paging) {
-		return bMapper.selectBoardAll(paging);
+	public List<BoardVO> selectBoardAllPaging(PagingVO paging) {
+		return bMapper.selectBoardAllPaging(paging);
 	}
 
 	@Override
 	public List<BoardVO> findBoard(PagingVO paging) {
-		// TODO Auto-generated method stub
 		return bMapper.findBoard(paging);
 	}
 
@@ -55,14 +54,13 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO selectBoardByIdx(Integer idx) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return bMapper.selectBoardByIdx(idx);
 	}
 
 	@Override
 	public int updateReadnum(Integer idx) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bMapper.updateReadnum(idx);
 	}
 
 	@Override
