@@ -35,6 +35,9 @@ public class BoardDAO {
 	/**게시판 셀렉트 함수*/
 	public String NSChoice(String tn){
 		switch(tn) {
+			case "0":
+				NS="board.model.NoticeMapper";
+				break;
 			/*case "1":
 				NS="board.model.Mapper1";
 				break;*/
@@ -123,7 +126,18 @@ public class BoardDAO {
 			if(ses!=null) ses.close();
 		}
 	}
-	
+	/**공감수 증가*/
+	public void increaseLikes(String tn, int num) {
+		try {
+			NS=NSChoice(tn);
+			
+			ses=fac.openSession();
+			ses.update(NS+".increaseLikes", num);
+		
+		}finally {
+			if(ses!=null) ses.close();
+		}
+	}
 	/**댓글 작성하기*/
 	public int subReply(String tn, ReplyVO vo) {//게시판번호, 게시글번호, 댓글, 작성자아이디 받아오기
 		try {

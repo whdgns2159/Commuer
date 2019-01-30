@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String myctx=request.getContextPath();
+%>
 <div class="container" style="margin-top:30px;">
 	<div class="row" id="front_art">
 		<div class="col-md-4" id="front_art_notice">
@@ -18,7 +21,7 @@
 						<tr>
 							<td></td>
 							<td rowspan="2" style="text-align:right">
-								<a href="#" onclick="WriteNotice.do" class="btn btn-primary">작성</a>
+								<a href="<%=myctx %>/WriteNotice.do?tn=0"  class="btn btn-primary">작성</a>
 							</td>
 						</tr>
 					</c:if>

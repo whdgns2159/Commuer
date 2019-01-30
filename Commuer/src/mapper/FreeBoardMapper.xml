@@ -37,6 +37,10 @@
  		select free_b_num, subject, content, id, hits, likes, wdate  
  		from free_board where free_b_num=#{num}
  	</select>
+ 	<!-- 공감수 증가 -->
+ 	<update id="increaseLikes" parameterType="int">
+ 		update free_board set likes = likes+1 where free_b_num=#{num}
+ 	</update>
  	<!-- 게시글 수정하는 sql문 -->
  	<update id="editArticle" parameterType="Map">
  		update free_board set subject=#{sub}, content=#{cont} where free_b_num =#{num}

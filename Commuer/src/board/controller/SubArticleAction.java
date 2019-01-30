@@ -36,11 +36,12 @@ public class SubArticleAction extends AbstractAction {
 		
 		String subject=req.getParameter("subject");
 		String content=req.getParameter("content");
+		String contents = content.replace("\r\n", "<br>"); //엔터키
 		String id=userInfo.getId();
 		
-		System.out.println("subject:"+subject+"content: "+content+"id: "+id);
+		System.out.println("subject:"+subject+"content: "+contents+"id: "+id);
 				
-		BoardVO article=new BoardVO(0 , subject, content, id, 0, 0, null);
+		BoardVO article=new BoardVO(0 , subject, contents, id, 0, 0, null);
 		
 		//게시판번호, 
 		int n=dao.insertBoard(tnStr, article);

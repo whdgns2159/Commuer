@@ -16,13 +16,14 @@ public class EditEndArticleAction extends AbstractAction {
 		// TODO Auto-generated method stub
 		String sub=req.getParameter("subject");
 		String cont=req.getParameter("content");
+		String content=cont.replace("\r\n", "<br>");
 		String num=req.getParameter("num");
 		String tnStr=req.getParameter("tn");
 		
 		Map<String, String> map=new HashMap<>();
 		
 		map.put("sub", sub);
-		map.put("cont", cont);
+		map.put("cont", content);
 		map.put("num", num);
 		
 		BoardDAO dao=new BoardDAO();

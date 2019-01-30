@@ -26,6 +26,7 @@
    <mapper resource="mapper/FreeBoardMapper.xml" />
    <mapper resource="mapper/HumorBoardMapper.xml" />
    <mapper resource="mapper/MusicBoardMapper.xml" />
+   <mapper resource="mapper/NoticeMapper.xml"/>
    <mapper resource="mapper/StarBoardMapper.xml" />
    <mapper resource="mapper/BookmarkMapper.xml"/>
    <!-- ====================================== -->

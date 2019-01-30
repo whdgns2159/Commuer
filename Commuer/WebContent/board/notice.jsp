@@ -32,7 +32,7 @@
 	<hr color="red">
 	<div class="row">
 		<div class="col-md-10">
-			<button class="btn btn-primary btn-sm" onclick="likes.do?tn=${tn}&num=${num}">공감</button>
+			<button class="btn btn-primary btn-sm" onclick="">공감</button>
 		</div>
 		<!-- 게시글의 id와 세션의 id가 갖다면 -->
 		<c:if test="${GA.id eq userid }">
@@ -44,48 +44,8 @@
 		</c:if>
 	</div>
 	<hr color="red">
-	<section>
-		<div class="container-fluid">
-			<div>
-				<span>댓글수: ${totalReply}</span>
-			</div>
-			
-			<ul id="reply" style="list-style: none; padding-left: 0px">
-				<!-- 리플이 있을때 -->
-				<c:if test="${reply ne null}">
-					<c:forEach var="i" items="${reply}">
-						<li>
-							<div id="repleInfo">
-								<span>${i.id}</span> <span> <fmt:formatDate
-										value="${i.wdate}" pattern="MM-dd" />
-								</span>
-							</div>
-							<div>
-								<span>${i.content}</span>
-							</div>
-							<hr color="red">
-						</li>
-					</c:forEach>
-				</c:if>
-				<!-- 리플이 없을때 -->
-				<c:if test="${reply eq null }">
-					<li></li>
-				</c:if>
-			</ul>
 
-		</div>
-	</section>
-	<div class="input-group mb-3">
-		<form action="subReply.do" method="get">
-			<input type="text" class="form-control" placeholder="Search"
-				name="content"> <input type="hidden" name="tn"
-				value="${tn}" /> <input type="hidden" name="num" value="${num}" />
-			<div class="input-group-append">
-				<button class="btn btn-success" type="submit">등록</button>
-				<!-- 댓글등록 -->
-			</div>
-		</form>
-	</div>
+	
 </div>
 <!-- container  -->
 

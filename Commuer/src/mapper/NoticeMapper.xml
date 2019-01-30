@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="board.model.NoticeMapper">
+ 
+ 	<!-- 칼럼과 VO객체의 명명이 다를경우 맵핑해준다. -->
+ 	<resultMap type="board" id="boardMap">
+ 		<id property="num" column="notice_b_num"/>
+ 		<result property="subject" column="subject"/>
+ 		<result property="content" column="content"/>
+ 		<result property="id" column="id"/>
+ 		<result property="hits" column="hits"/>
+ 		<result property="likes" column="likes"/>
+ 		<result property="date" column="wdate"/>
+ 	</resultMap>
+  	
+  	<!-- 게시판에 글을 쓰는 sql문 -->
+ 	<insert id="articleWrite" parameterType="board">
+ 		insert into notice_board values(
+ 			notice_board_seq.nextval,
+ 			#{subject},
+ 			#{content},
+ 			#{id},
+ 			#{hits},
+ 			#{likes},
+ 			sysdate
+ 		)
+ 	</insert>
+ 	<!-- 게시글 삭제하는 sql문 -->
+ 	<delete id="delArticle">
+ 		delete from notice_board where notice_b_num=#{num}
+ 	</delete>
+ 	<!-- 조회수 증가 -->
+ 	<update id="increaseHits" parameterType="_int">
+ 		update notice_board set hits= hits+1 where notice_b_num=#{num}
+ 	</update>
+  </mapper>
