@@ -61,8 +61,13 @@ public class BoardController {
 	 */
 
 	@PostMapping("/input")
-	public String boardInsert(Model m, HttpServletRequest req, @RequestParam("mfilename") MultipartFile mfilename,
-			@ModelAttribute("board") BoardVO board) {
+	public String boardInsert(Model m, 
+			HttpServletRequest req, 
+			@RequestParam("mfilename") MultipartFile mfilename,
+			@ModelAttribute("board") BoardVO board,
+			@RequestParam(defaultValue="") String old_file
+			) {
+		log.info("mode= "+board.getMode());
 		log.info("board=" + board);
 		// servlet-context.xml에 multipartResolver빈이 등록되어 있음
 		// 1. 업로드 디렉토리(Upload)의 절대경로 얻기
@@ -94,16 +99,37 @@ public class BoardController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
+			
+			//4. 글 수정의 경우 예전파일은 새로운 첨부파일이 있다면 삭제처리
+			if(board.getMode().equals("Edit")&& !old_file.isEmpty()) {
+				File delFile=new File(upDir, old_file);
+				boolean b=delFile.delete();
+				log.info("이전 첨부파일 삭제 처리 여부: "+b);
+			}
 		} // mfilename.isEmpty
 
 		// 4. BoardService객체를 통해 글쓰기 처리
 
 		int n = 0;
-
-		n = bService.insertBoard(board);
-
-		String str = (n > 0) ? "글쓰기 성공" : "글쓰기 실패";
+		String mode=board.getMode();
+		String str="";
+		if(mode.equals("write")) {
+			//mode가 글쓰기라면
+			n = bService.insertBoard(board);
+			str="글쓰기";
+		}else if(mode.equals("Edit")) {
+			//mode가 글 수정이라면
+			n=bService.updateBoard(board);
+			str="글수정";
+		}else if(mode.equals("rewrite")) {
+			//mode가 답변글 쓰기 라면
+			n=bService.rewriteBoard(board);
+			str="답변글 쓰기";
+		}
+		
+		
+		
+		str += (n > 0) ? " 성공" : " 실패";
 		String loc = (n > 0) ? "list" : "javascript:history.back()";
 
 		return util.addMsgLoc(m, str, loc);
@@ -225,4 +251,116 @@ public class BoardController {
 
 		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}
-}
+	
+	@GetMapping("/boardPasswd")
+	public String passwdForm(Model m, 
+			@RequestParam(defaultValue="0") int idx,
+			@RequestParam(defaultValue="") String mode
+			){
+		
+		if(idx==0||mode.isEmpty()) {
+			String msg="잘못 들어온 경로입니다.";
+			return util.addMsgBack(m, msg);
+		}
+		
+		m.addAttribute("idx",idx);
+		m.addAttribute("mode",mode);
+		
+		return "board/boardPassword";
+	}//------------------------------------------
+	
+	@PostMapping("/edit")
+	public String boardEditForm(Model m,
+			@RequestParam(defaultValue="0") int idx,
+			@RequestParam(defaultValue="") String pwd,
+			@RequestParam(defaultValue="") String mode
+			) {		
+
+		if(idx==0||mode.isEmpty()||pwd.isEmpty()) {
+			String msg="잘못 들어온 경로입니다.";
+			return util.addMsgBack(m, msg);
+		}
+		
+		//해당 글의 글번호로 db의 pwd가져와서 사용자가 입력한 pwd와 일치하는지 여부를 체크
+		//일치하면 수정폼을 보여준다.
+		BoardVO board=bService.selectBoardByIdx(idx);
+		if(!board.getPwd().equals(pwd)) {
+			String msg="비밀번호가 일치하지 않아요";
+			return util.addMsgBack(m, msg);
+		}
+		
+		m.addAttribute("board",board);
+		m.addAttribute("mode",mode);
+		
+		return "board/boardEdit";
+	}//------------------------------------------
+	
+	@PostMapping("/delete")
+	public String boardDelete(Model m,
+			HttpServletRequest req,
+			@RequestParam(defaultValue="0") int idx,
+			@RequestParam(defaultValue="") String pwd,
+			@RequestParam(defaultValue="") String old_file) {
+		//1. 유효성 체크
+		String msg="";
+		if(idx==0||pwd.isEmpty()) {
+			msg="잘못된 경로입니다.";
+			return util.addMsgBack(m, msg);
+		}
+		
+		
+		//2. 해당글의 비번을 가져와서 사용자가 입력한 비번과 비교
+		// 일치하지 않으면 메시지 띄우기
+		BoardVO b=bService.selectBoardByIdx(idx);
+		if(!b.getPwd().equals(pwd)) {
+			msg="비밀번호가 일치하지 않습니다.";
+			return util.addMsgBack(m, msg);
+		}
+		
+		//비번이 일치하면
+		//2_1. 이전 파일 삭제처리
+		if(b.getIsFile()==1) {//첨부파일이 있다면 1이 나온다
+			String upDir = req.getServletContext().getRealPath("/Upload");
+			File delFile=new File(upDir, b.getFilename());
+			boolean c=delFile.delete();
+			log.info("글삭제시 파일 삭제처리: "+c);
+		
+		}
+		//2_2. 글 삭제처리
+		int n=bService.deleteBoard(idx);
+		String msg2=(n>0)?"글 삭제 성공":"글 삭제 실패";
+		return util.addMsgLoc(m, msg2, "list");
+	}
+	
+	/**답변글 달기 폼 보여주기*/
+	@PostMapping("/rewrite")
+	public String rewriteForm(Model m,
+			 @RequestParam(defaultValue="0") int idx,
+			 @RequestParam(defaultValue="") String subject
+			 ) {
+		if(idx==0||subject.isEmpty()) {
+			return "redirect:list";
+		}
+		m.addAttribute("idx", idx);
+		m.addAttribute("subject",subject);
+		
+		
+		return "board/boardRewrite";
+	}
+}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -72,8 +72,8 @@
 			<td colspan="4" align=center>
 			<a href="input">글쓰기</a>|
 			<a href="list">목록</a>| <a
-				href="#" onclick="go('a',1)">편집</a>| <a href="#"
-				onclick="go('a',2)">삭제</a>| <a
+				href="#" onclick="go('${board.idx}',1)">편집</a>| <a href="#"
+				onclick="go('${board.idx}',2)">삭제</a>| <a
 				href="javascript:goRe()">답변</a></td>
 		</tr>
 	</table>
@@ -85,11 +85,12 @@
 		<input type="hidden" name="mode">
 	</form>	
 	<!-- -------------------------------------------- -->
+	
 	<!-- 답변 달기 form 시작------------------------------- -->
 	<form name="reF" action="rewrite" method="POST">
 		<!-- hidden으로 부모글(원글)의 글번호(idx)와 제목 subject를 넘기자. -->
-		<input type="hidden" name="idx" value="<c:out value="a"/>">
-		<input type="hidden" name="subject" value="<c:out value="a"/>">
+		<input type="hidden" name="idx" value="<c:out value="${board.idx }"/>">
+		<input type="hidden" name="subject" value="<c:out value="${board.subject }"/>">
 	</form>
 	<!-- 첨부파일 다운로드 form -->
 	<form action="fileDown" method="POST" name="ff">
@@ -120,7 +121,7 @@
 			}
 			vf.action="boardPasswd";
 			
-			vf.method="POST";
+			vf.method="GET";
 			vf.submit();
 		
 	}

@@ -25,4 +25,8 @@ public class BoardVO {
 	
 	private int isFile;//첨부파일이 있으면1, 없으면 0값을 갖는다.
 	private int newImg;//24시간 이내 쓴 글
+	
+	private String mode;//글쓰기=>write, 글 수정=>Edit, 답글쓰기=>rewrite
+	
+	
 }

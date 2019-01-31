@@ -30,8 +30,8 @@
 	<div align="center" id="bbs" class="col-md-8 col-md-offset-2">
 	<h1>Spring Board</h1>
 	<p>
-		<a href="<%=ctx%>/board/input#bbs">글쓰기</a>| <a
-			href="<%=ctx%>/board/list#bbs">글목록</a>
+		<a href="<%=ctx%>/board/input">글쓰기</a>| <a
+			href="<%=ctx%>/board/list">글목록</a>
 		<p>
 		<div class="section">
 		<div class="row">
@@ -92,6 +92,14 @@
 						<c:out value="${board.idx}"/>
 					</td>
 					<td align="left">
+					
+					<!-- 답변글 들여쓰기 -->
+					<c:forEach var="k" begin="0" end="${board.lev }">
+					&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					<c:if test="${board.lev>0 }">
+					⇒
+					</c:if>
 					<a href="view?idx=${board.idx}">					
 						<c:out value="${board.subject}"/>
 						&nbsp;&nbsp;&nbsp;
