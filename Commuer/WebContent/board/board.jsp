@@ -58,7 +58,7 @@
 				<c:if test="${BS eq null or empty BS}">
 					<!-- 게시판이 비어있을때 표시하는 내용 -->
 					<tr>
-						<td colspan="4"><b>데이터가 없습니다.</b></td>
+						<td colspan="4">데이터가 없습니다.</td>
 					</tr>
 				</c:if>
 				<c:if test="${BS ne null}">
@@ -80,35 +80,34 @@
 	</div>
 	<!-- .table-responsive -->
 	<div class="row">
-		<div class="col-md-7">
-			<ul class="pagination">
-				<c:forEach var="i" begin="1" end="${pageCount}" step="1">
-					<c:if test="${i eq cpage }">
-						<li class="page-item active"><a class="page-link"
-							href="board.do?tn=${tn }&cpage=${i}">${i }</a></li>
-					</c:if>
-					<c:if test="${i ne cpage }">
-						<li class="page-item"><a class="page-link"
-							href="board.do?tn=${tn }&cpage=${i}">${i }</a></li>
-					</c:if>
-				</c:forEach>
-			</ul>
-		</div>
+		<!-- 게시물 페이지네이션 -->
+		<c:if test="${BS eq null }">
+			<div class="col-md-7">
+				${pagination}
+			</div>
+		</c:if>
+		<c:if test="${BS ne null }">
+			<div class="col-md-7">
+				
+			</div>
+		</c:if>
+		<!-- 검색한 내용만 모아둔 페이지네이션 -->
+		
 		<div class="col-md-5">
 
 			<!-- 게시글 선택시 파라미터 넘김 -->
-
 			<form name="art_info" action="article.do">
 				<input type="hidden" name="tn"> 
 				<input type="hidden" name="num">
 			</form>
+			
 			<!-- 키워드검색input -->
 			<nav class="navbar">
 				<form class="navbar-form" action="keywordSearch.do">
 					<div class="form-group">
 						<div class="input-group-sm">
 							<input name="keyword" type="text" class="form-control form-control-sm"> 
-							<input type="hidden" name="tn" value="${tn}" class="form-control">
+							<input name="tn" type="hidden"  value="${tn}" class="form-control">
 						</div>
 					</div>
 					<button type="submit" class="btn btn-default btn-sm">검색</button>
@@ -116,7 +115,7 @@
 
 				<c:if test="${loginUser ne null }">
 					<div class="art_write">
-						<a href="articleWrite.do?tn=${tn}" class="btn btn-primary">글쓰기</a>
+						<a href="articleWrite.do?tn=${tn}" class="btn btn-primary btn-sm">글쓰기</a>
 					</div>
 				</c:if>
 			</nav>

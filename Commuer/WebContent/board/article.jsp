@@ -32,7 +32,7 @@
 	<hr color="red">
 	<div class="row">
 		<div class="col-md-10">
-			<button class="btn btn-primary btn-sm" onclick="likes.do?tn=${tn}&num=${num}">공감</button>
+			<button class="btn btn-primary btn-sm" onclick="likes.do?tn='${tn}'&num='${num}'">공감</button>
 		</div>
 		<!-- 게시글의 id와 세션의 id가 갖다면 -->
 		<c:if test="${GA.id eq userid }">

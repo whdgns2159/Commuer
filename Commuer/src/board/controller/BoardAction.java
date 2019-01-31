@@ -1,6 +1,5 @@
 package board.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,6 +26,9 @@ public class BoardAction extends AbstractAction {
 		/**페이징 처리하기*/
 		
 		String cpStr=req.getParameter("cpage");
+		int pagingBlock=10;
+		int prevBlock=0;
+		int nextBlock=0;
 		if(cpStr==null||cpStr.trim().isEmpty()) {
 			cpStr="1";
 		}
@@ -46,8 +48,35 @@ public class BoardAction extends AbstractAction {
 			cpage=pageCount;//마지막 페이지 보여주도록
 		}
 		
+		prevBlock=(cpage-1)/pagingBlock*pagingBlock;
+		nextBlock=prevBlock+(pagingBlock+1);
+
 		int end=cpage*pageSize;
 		int start=end -(pageSize-1);
+		
+		StringBuilder buf=new StringBuilder().append("<ul class='pagination'>");
+		
+		if(prevBlock>0){
+			buf.append("<li><a class='page-link' href='board.do?tn="+tnStr+"&cpage="+prevBlock+"'>");
+			buf.append("Prev");
+			buf.append("</a></li>");
+		}
+		for(int i=prevBlock+1;i<=nextBlock-1&& i<=pageCount;i++){
+			String css="";
+			if(i==cpage) {
+				css="class='active'";
+			}
+			buf.append("<li "+css+"><a class='page-link' href='board.do?tn="+tnStr+"&cpage="+i+"'>"+i+"</a>");
+			buf.append("</li>");
+		}
+		if(nextBlock<pageCount){
+			buf.append("<li><a class='page-link' href='board.do?tn="+tnStr+"&cpage="+nextBlock+"'>");
+			buf.append("Next");
+			buf.append("</a></li>");
+		}
+		buf.append("</ul>");
+		String pagination=buf.toString();
+		
 		//------------------------------------------------------------------
 		
 		/**게시물 가져오기*/
@@ -95,14 +124,13 @@ public class BoardAction extends AbstractAction {
 		}
 		//-----------------------------------------------------------------
 		
+		
 		req.setAttribute("BT", arr);
 		req.setAttribute("tn", tn);
 		req.setAttribute("tName", tName);
 		
-		req.setAttribute("totalCount", totalCount);
-		req.setAttribute("pageCount", pageCount);
-		req.setAttribute("cpage", cpage);
 		
+		req.setAttribute("pagination", pagination);
 		String viewPage="board/board.jsp";
 		
 		this.setViewPage(viewPage);

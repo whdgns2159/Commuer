@@ -127,13 +127,14 @@ public class BoardDAO {
 		}
 	}
 	/**공감수 증가*/
-	public void increaseLikes(String tn, int num) {
+	public int increaseLikes(String tn, int num) {
 		try {
 			NS=NSChoice(tn);
 			
-			ses=fac.openSession();
-			ses.update(NS+".increaseLikes", num);
+			ses=fac.openSession(true);
+			int n=ses.update(NS+".increaseLikes", num);
 		
+			return n;
 		}finally {
 			if(ses!=null) ses.close();
 		}
