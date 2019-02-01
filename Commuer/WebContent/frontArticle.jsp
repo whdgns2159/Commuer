@@ -17,6 +17,12 @@
 					<td width="90%" style="font-size:8pt">글제목</td>
 					<td width="10%" style="font-size:8pt; ">게시일</td>
 				</tr>
+				<c:forEach var="notice" items="${NB}"> 
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</c:forEach>
 					<c:if test="${loginUser ne null}">
 						<tr>
 							<td></td>
@@ -55,3 +61,22 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(function(){
+		var noticeT=function(){
+			var tn=${tn}.val();
+			
+			$.ajax({
+				type:"GET",
+				url:"getNotice.do",
+				data:tn,
+				dataType:"xml",
+				success:function(s){
+					
+				},error:function(e){
+					
+				}
+			});
+		}
+	});
+</script>

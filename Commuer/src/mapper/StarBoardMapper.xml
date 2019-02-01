@@ -36,6 +36,14 @@
  		select star_b_num, subject, content, id, hits, likes, wdate  
  		from star_board where star_b_num=#{num}
  	</select>
+ 	<!-- 공감수 증가 -->
+ 	<update id="increaseLikes" parameterType="int">
+ 		update star_board set likes = likes+1 where star_b_num=#{num}
+ 	</update>
+ 	<!-- 게시글 수정하는 sql문 -->
+ 	<update id="editArticle" parameterType="Map">
+ 		update star_board set subject=#{sub}, content=#{cont} where star_b_num =#{num}
+ 	</update>
  	<!-- 게시판에 글을 쓰는 sql문 -->
  	<insert id="articleWrite" parameterType="board">
  		insert into star_board values(

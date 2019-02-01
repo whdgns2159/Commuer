@@ -17,8 +17,9 @@ public class IncreaseLikesAction extends AbstractAction {
 		BoardDAO dao=new BoardDAO();
 		
 		int n=dao.increaseLikes(tn, num);
+		req.setAttribute("n", n);
 		
-		this.setViewPage("javascript:location.reload()");
+		this.setViewPage("likeResult.jsp");
 		this.setRedirect(false);
 	}
 

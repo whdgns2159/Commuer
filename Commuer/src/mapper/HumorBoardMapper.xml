@@ -30,12 +30,19 @@
  							 from(select humor_b_num, subject, content, id, hits, likes, wdate from humor_board order by humor_b_num desc) a )
  					where rn between #{start} and #{end}
  	</select>
- 	
  	<!-- 선택한 게시글의 내용을 불러오는 sql문 -->
  	<select id="getArticle" parameterType="_int" resultMap="boardMap">
  		select humor_b_num, subject, content, id, hits, likes, wdate  
  		from humor_board where humor_b_num=#{num}
  	</select>
+ 	<!-- 공감수 증가 -->
+ 	<update id="increaseLikes" parameterType="int">
+ 		update humor_board set likes = likes+1 where humor_b_num=#{num}
+ 	</update>
+ 	<!-- 게시글 수정하는 sql문 -->
+ 	<update id="editArticle" parameterType="Map">
+ 		update humor_board set subject=#{sub}, content=#{cont} where humor_b_num =#{num}
+ 	</update>
  	<!-- 게시판에 글을 쓰는 sql문 -->
  	<insert id="articleWrite" parameterType="board">
  		insert into humor_board values(
@@ -71,7 +78,7 @@
 						 )
  					where rn between #{start} and #{end}
  	</select>
- 	
+ 	<!-- 검색한 게시글의 총 게시글수 -->
  	<select id="getKeywordCount" parameterType="string" resultType="int">
  		select count(humor_b_num) cnt from humor_board where subject like '%'||#{keyword}||'%'
  	</select>

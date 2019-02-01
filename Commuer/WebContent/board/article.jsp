@@ -20,7 +20,10 @@
 				</div>
 				<div class="col text-right">
 					<span>작성일: <fmt:formatDate value="${GA.date}"
-							pattern="yyyy-MM-dd" /></span><span>조회수: ${GA.hits}</span>
+							pattern="yyyy-MM-dd" />&nbsp;&nbsp;
+							조회수: ${GA.hits}<br>
+							${GA.likes }
+					</span>
 				</div>
 			</div>
 		</header>
@@ -32,7 +35,11 @@
 	<hr color="red">
 	<div class="row">
 		<div class="col-md-10">
-			<button class="btn btn-primary btn-sm" onclick="likes.do?tn='${tn}'&num='${num}'">공감</button>
+			<form id="likeF" action="likes.do" method="GET">
+				<input type="hidden" name="tn" value="${tn}">
+				<input type="hidden" name="num" value="${num}">
+				<button type="button" class="btn btn-primary btn-sm" onclick="gong()">공감</button>
+			</form>
 		</div>
 		<!-- 게시글의 id와 세션의 id가 갖다면 -->
 		<c:if test="${GA.id eq userid }">
@@ -56,7 +63,7 @@
 					<c:forEach var="i" items="${reply}">
 						<li>
 							<div id="repleInfo">
-								<span>${i.id}</span> <span> <fmt:formatDate
+								<span>${i.id}</span> <span>&nbsp;&nbsp; <fmt:formatDate
 										value="${i.wdate}" pattern="MM-dd" />
 								</span>
 							</div>
@@ -88,5 +95,29 @@
 	</div>
 </div>
 <!-- container  -->
+<script type="text/javascript">
 
+	var gong=function(){
+		var data=$('#likeF').serialize();
+		
+		$.ajax({
+			type:"GET",
+			url:"likes.do",
+			data:data,
+			dataType:"xml",
+			success:function(s){
+				console.log(s);
+				var n=$(s).find('result').text();
+				//alert(s);
+				if(parseInt(n)>0){
+					location.reload();
+				}
+			},
+			error:function(e){
+				console.log(e);
+			}
+		});
+	}
+	
+</script>
 

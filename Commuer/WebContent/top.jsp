@@ -65,7 +65,7 @@
 			  <button type="button" class="btn btn-default btn-sm" onclick="loginCheck()">로그인</button>
 		  
 		  	<a class="nav-link" href="<%=myctx%>/join.do">회원가입</a>
-		  	<a class="nav-link" href="<%=myctx%>/findUser.do">아이디/비밀번호 찾기</a>
+		  	<a class="nav-link" href="#" onclick="findUser()">아이디/비밀번호 찾기</a>
 		  </div>
 		  </form>
 		  </c:if>
@@ -86,4 +86,11 @@
 	</nav>
 </div>
 </body>
+<script type="text/javascript">
+	var findUser=function(){
+		window.open("");
+		return;
+	}
+
+</script>
 </html>

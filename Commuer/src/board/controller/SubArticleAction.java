@@ -44,9 +44,8 @@ public class SubArticleAction extends AbstractAction {
 		BoardVO article=new BoardVO(0 , subject, contents, id, 0, 0, null);
 		int n=0;
 		//게시판번호, 
-		for(int i=0;i<50;i++) {
-			n=dao.insertBoard(tnStr, article);
-		}
+		n=dao.insertBoard(tnStr, article);
+		
 		String msg=(n>0)?"작성되었습니다.":"작성에 실패했습니다.";
 		String loc=(n>0)?"main.do":"javascript:history.back()";
 		

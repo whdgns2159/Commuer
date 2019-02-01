@@ -20,6 +20,13 @@ public class BoardAction extends AbstractAction {
 		String tnStr=req.getParameter("tn");
 		int tn=Integer.parseInt(tnStr);
 		
+		HttpSession ses=req.getSession();
+		String keyword=req.getParameter("keyword");
+		if(keyword==null||keyword.trim().isEmpty()) {
+			keyword=(String)ses.getAttribute("keyword");			
+		}
+		ses.setAttribute("keyword",keyword);
+		
 		BoardDAO dao=new BoardDAO();
 		
 	
@@ -87,7 +94,7 @@ public class BoardAction extends AbstractAction {
 		
 		
 		/**북마크 여부 가져오기*/
-		HttpSession ses=req.getSession();
+		
 		UserVO userInfo=(UserVO)ses.getAttribute("loginUser");
 		String id="";
 		if(userInfo!=null) {
