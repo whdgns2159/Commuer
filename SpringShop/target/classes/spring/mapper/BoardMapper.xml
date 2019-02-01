@@ -31,7 +31,9 @@
 	<select id="selectBoardAllPaging" parameterType="com.tis.domain.PagingVO" resultType="Board">
 		select * from(
 		select rownum rn, a.* from 
-			(select <include refid="sel_column"/> from board order by refer desc, sunbun asc) a
+			(select <include refid="sel_column"/> from board
+			<include refid="findWhere"/>
+			 order by refer desc, sunbun asc) a
 	) <![CDATA[where rn >#{start} and rn <=#{end}]]>
 	</select>
 	
@@ -47,6 +49,31 @@
 	<select id="getTotalCount" resultType="int">
 		select count(idx) from board
 	</select>
+	
+	<sql id="findWhere">
+		<if test="findType!=null and findKeyword !=''">	 	
+	 	<where>
+	 		<if test="findType==1"><!-- 글제목 -->
+	 			subject like '%'||#{findKeyword}||'%'
+	 		</if>
+	 		<if test="findType==2"><!-- 작성자 -->
+	 			name like '%'||#{findKeyword}||'%'
+	 		</if>
+	 		<if test="findType==3"><!-- 글내용 -->
+	 			content like '%'||#{findKeyword}||'%'
+	 		</if>
+	 	</where>
+	 	</if>
+	</sql>	
+		
+		<!-- 검색시 페이징처리 -->
+	<select id="getTotalCountPaging"
+	 parameterType="com.tis.domain.PagingVO" resultType="int">
+	 	select count(idx) from board
+	 	<include refid="findWhere"/>
+	</select>
+	
+	
 	<!-- [글 내용보기 관련] 글 내용볼때 조회수 증가-->
 	<update id="updateReadnum" parameterType="int">
 		update board set readnum = readnum +1 where idx=#{idx}

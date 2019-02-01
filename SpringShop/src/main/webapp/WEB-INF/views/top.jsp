@@ -39,11 +39,12 @@
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<%=myctx%>/mall.do"><span>Brand</span></a>
+				<a class="navbar-brand" href="<%=myctx%>/index"><span>Brand</span></a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="<%=myctx%>/mall.do">Home</a></li>
+					<li class="active"><a href="<%=myctx%>/index">Home</a></li>
+					<li class="active"><a href="<%=myctx%>/join">Join</a></li>
 					
 			<!-- requestScope.message
 				sessionScope.loginUser

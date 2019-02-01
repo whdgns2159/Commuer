@@ -1,14 +1,21 @@
 package com.tis.domain;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import javax.servlet.http.HttpSession;
+
 import lombok.Data;
+import lombok.extern.log4j.Log4j;
 
 @Data
+@Log4j
 public class PagingVO {
 
 	
 	// 페이징 처리 관련 프로퍼티 선언
 	private int cpage;// 현재 보여줄 페이지 번호
-	private int pageSize =5;// 한 페이지 당 보여줄 목록 갯수
+	private int pageSize =0;// 한 페이지 당 보여줄 목록 갯수
 	private int totalCount;// 총 게시글 수
 	private int pageCount;// 페이지수
 
@@ -25,10 +32,23 @@ public class PagingVO {
 	private String findType;// 검색 유형
 	private String findKeyword;// 검색어
 	
-	public void init() {
-		if(pageSize<=0) {
+	public void init(HttpSession ses) {
+		if(pageSize<0) {
 			pageSize=5;
 		}
+		if(pageSize==0) {
+			//파라미터로 넘어오는 pageSize가 없다면
+			//세션에 저장된 pageSize가 있는지 찾아본다.
+			Integer ps=(Integer)ses.getAttribute("pageSize");
+			
+			if(ps==null) {//세션에도 없다면
+				pageSize=5;
+			}else {
+				pageSize=ps;
+			}
+		}
+		ses.setAttribute("pageSize", pageSize);
+		
 		pageCount=(totalCount-1)/pageSize+1;
 		if(cpage<=0) {
 			cpage=1;
@@ -62,7 +82,16 @@ public class PagingVO {
 		//myctx: context명
 		//loc: 게시판 목록경로 /board/list 
 		//qStr : Query String
-		String qStr="?pageSize="+pageSize;
+		findType=(findType==null)?"":findType;
+		try {
+			findKeyword=(findKeyword==null)?"":
+				URLEncoder.encode(findKeyword, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			log.info(e);
+		}
+		
+		
+		String qStr="?pageSize="+pageSize+"&findType="+findType+"&findKeyword="+findKeyword;
 		//String의 불변성(immutablility) 때문에 StringBuffer/StringBuilder
 		//를 이용하여 문자열을 편집한 후 String으로 만들어 반환하자.
 		StringBuilder buf=new StringBuilder().append("<ul class='pagination'>");

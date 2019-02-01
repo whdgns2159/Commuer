@@ -51,8 +51,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int getTotalCount(PagingVO paging) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bMapper.getTotalCountPaging(paging);
 	}
 
 	@Override

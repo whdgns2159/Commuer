@@ -6,10 +6,13 @@
 
  <typeAliases>
  	 <typeAlias type="com.tis.domain.BoardVO" alias="Board"/>
+ 	 <typeAlias type="com.tis.domain.PagingVO" alias="Paging"/> 	 
+ 	 <typeAlias type="com.user.domain.UserVO" alias="User"/>
  </typeAliases>
  
  <!-- mybatis-spring:scan에 등록한 -->
   <mappers>
   	<mapper resource="spring/mapper/BoardMapper.xml"/>
+  	<mapper resource="spring/mapper/UserMapper.xml"/>
   </mappers>
 </configuration>

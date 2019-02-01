@@ -29,14 +29,15 @@
 <div class="row">
 	<div align="center" id="bbs" class="col-md-8 col-md-offset-2">
 	<h1>Spring Board</h1>
+	
 	<p>
 		<a href="<%=ctx%>/board/input">글쓰기</a>| <a
 			href="<%=ctx%>/board/list">글목록</a>
 		<p>
 		<div class="section">
 		<div class="row">
-			<!-- 검색 폼 시작--------------------- -->
-			<form name="sf" action="find"  onsubmit="return check()">
+		<!-- 검색 폼 시작--------------------- -->
+			<form name="sf" action="list"  onsubmit="return check()">
 			<div class="col-md-2">
 				<select name="findType" class="form-control">
 					<option value="">::검색 유형::</option>
@@ -54,10 +55,10 @@
 			</div>	
 			</form>
 			<!-- 검색 폼 끝---------------------- -->
-			
 			<!-- 페이지 사이즈 폼 시작-------------- -->
 			<form name="pf" id="pf" action="list">
-				
+				<input type="hidden" name="findType" value="${paging.findType }">
+				<input type="hidden" name="findKeyword" value="${keyword}">
 				<div class="col-md-2">
 				<select name="pageSize" class="form-control" onchange="submit()">
 					<option value="">:::페이지 사이즈:::</option>

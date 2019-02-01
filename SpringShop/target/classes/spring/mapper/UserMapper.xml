@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  context-datasource.xml에 mybatis-spring:scan에 등록된
+패키지의 Mapper인터페이스명과 
+네임스페이스를 반드시 동일하게 주어야 함-->
+<mapper namespace="com.user.mapper.UserMapper">
+<!-- 	<insert id="createUser">
+		
+	</insert> -->
+	<select id="createUser" resultType="int">
+		select count(idx) from member
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

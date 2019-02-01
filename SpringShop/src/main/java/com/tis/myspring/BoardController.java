@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -138,15 +139,18 @@ public class BoardController {
 	@RequestMapping("/list")
 	public String boardListPaging(Model m,
 			HttpServletRequest req,
+			HttpSession ses,
 			@ModelAttribute("paging") PagingVO paging) {
 		log.info("paging=   "+paging);
+		//검색어
+		String key=paging.getFindKeyword();
 		
 		//1. 총 게시글 수 가져오기
-		int totalCount=bService.getTotalCount();
+		int totalCount=bService.getTotalCount(paging);
 		
 		paging.setTotalCount(totalCount);
 		paging.setPagingBlock(5);
-		paging.init();
+		paging.init(ses);
 		log.info("페이징연산 후 paging="+paging);
 		//2. 게시 목록 가져오기
 		List<BoardVO> bList=bService.selectBoardAllPaging(paging);
@@ -160,7 +164,7 @@ public class BoardController {
 		m.addAttribute("boardList", bList);
 		m.addAttribute("paging", paging);
 		m.addAttribute("pageNavi", str);
-		
+		m.addAttribute("keyword", key);
 		return "board/boardList3";
 	}
 	

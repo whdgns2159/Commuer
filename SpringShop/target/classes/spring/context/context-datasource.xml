@@ -50,5 +50,6 @@
 	
 	<!--[4] mybatis-spring:scan 설정 이걸 설정해줘야 mapper를 dao없이 사용할 수 있다.-->
 		<mybatis-spring:scan base-package="com.tis.mapper"/>
+		<mybatis-spring:scan base-package="com.user.mapper"/>
 		
 </beans>

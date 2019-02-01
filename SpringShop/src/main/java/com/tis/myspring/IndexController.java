@@ -17,4 +17,14 @@ public class IndexController {
 	public void showFoot() {
 		
 	}
+	
+	@RequestMapping("/carousel")
+	public String showCarousel() {
+		return "shop/carousel";
+	}
+	
+	@RequestMapping("/index")
+	public void showIndex() {
+		
+	}
 }
